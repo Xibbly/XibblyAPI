@@ -4,7 +4,6 @@ export default {
 
     route: 'login',
     method: 'USE',
-    permission: 'null',
 
     run({res}) {
 
