@@ -2,13 +2,13 @@ import RouteType from '../../../types/website.type'
 
 export default {
 
-    route: '',
+    route: '/register',
     method: 'USE',
     permission: 'null',
 
     run({res}) {
 
-        return res.send('test OK')
+        return res.send('register')
 
     }
 

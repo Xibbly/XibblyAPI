@@ -1,4 +1,5 @@
 import {NextFunction, Request, Response} from "express";
+import UserModelType from './models/user.modelType'
 
 export interface RouteArguments {
     req: Request
@@ -16,7 +17,7 @@ export default interface RouteType {
 
 declare module 'express-session' {
     interface SessionData {
-        userID: number
+        user: UserModelType
         [x: string]: any
     }
 }

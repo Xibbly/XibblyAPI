@@ -1,6 +1,6 @@
 export default interface UserModelType {
-    userId: number
-    userName: string
+    id: number
+    name: string
     permissions: string[]
     createdAt: Date
     modifiedAt: Date

@@ -33,7 +33,7 @@ export default class HandlerWebsite {
 
     private loadRoute(route: string, data: RouteType): void {
 
-        console.log(route, data)
+        // console.log(route, data)
 
         // @todo - Add permissions handler
         switch (data.method) {
