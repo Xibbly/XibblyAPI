@@ -6,7 +6,7 @@ export default {
     method: 'USE',
     permission: 'null',
 
-    run({res}) {
+    run({req, res}) {
 
         return res.render('home')
 

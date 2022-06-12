@@ -11,7 +11,7 @@ export default class HandlerWebsite {
     }
 
     // @todo - Function -> Class (routes)
-    private async handler(): Promise<void> {
+    private handler(): void {
 
         readdirSync(`${__dirname}/routes`).filter((name: string) => !name.endsWith('.route.js')).forEach(route => {
             readdirSync(`${__dirname}/routes/${route}`).forEach((subroute: string) => {
@@ -31,10 +31,11 @@ export default class HandlerWebsite {
 
     }
 
-    private loadRoute(route: string, data: RouteType) {
+    private loadRoute(route: string, data: RouteType): void {
 
         console.log(route, data)
 
+        // @todo - Add permissions handler
         switch (data.method) {
             case "USE":
                 this.app.use(route, (req, res, next) => data.run({req, res, next}))
@@ -45,5 +46,7 @@ export default class HandlerWebsite {
         }
 
     }
+
+    // private hasPermissions() {}
 
 }
