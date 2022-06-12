@@ -1,0 +1,17 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #212121;
+    font-family: sans-serif;
+    color: #fff;
+}
+
+#title {
+    text-align: center;
+}
+
+#content {
+    clear: both;
+    background: white;
+    color: black;
+}
