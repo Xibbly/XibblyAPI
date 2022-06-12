@@ -1,18 +1,19 @@
 import ex, {Application} from 'express'
 import es from 'express-session'
+import HandlerWebsite from './handler.website'
 
-export default class IndexExpress {
+export default class IndexWebsite {
 
     app: Application = ex()
 
     constructor() {
 
         this.setup()
-        this.test()
+        new HandlerWebsite(this.app)
 
     }
 
-    private setup() {
+    private setup(): void {
 
         this.app.set('view engine', 'pug')
         this.app.set('views', `${__dirname}/../../views`)
@@ -20,20 +21,18 @@ export default class IndexExpress {
 
         this.app.use(ex.json())
         this.app.use(ex.urlencoded({extended: false}))
-
-        console.log(process.env)
+        this.app.use(es({
+            secret: `${process.env.SESSION_SECRET}`,
+            cookie: {
+                maxAge: 30 * 60 * 1000 //30 min
+            },
+            resave: true,
+            saveUninitialized: true
+        }));
 
         this.app.listen(process.env.PORT, () => {
             console.log('API work!')
         })
-    }
-
-    private test() {
-
-        this.app.get('/', (req, res) => {
-            res.render('home')
-        })
-
     }
 
 }

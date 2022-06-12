@@ -1,6 +1,6 @@
 import {config as dotenvConfig} from 'dotenv'
-import IndexExpress from './website/index.express'
+import IndexWebsite from './website/index.website'
 
 dotenvConfig()
 
-new IndexExpress()
+new IndexWebsite()
