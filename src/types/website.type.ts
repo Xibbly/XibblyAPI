@@ -17,7 +17,7 @@ export default interface RouteType {
 
 declare module 'express-session' {
     interface SessionData {
-        user: UserModelType
+        user: Omit<UserModelType, 'password'>
         [x: string]: any
     }
 }

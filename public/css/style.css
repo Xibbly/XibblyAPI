@@ -9,9 +9,3 @@ html, body {
 #title {
     text-align: center;
 }
-
-#content {
-    clear: both;
-    background: white;
-    color: black;
-}

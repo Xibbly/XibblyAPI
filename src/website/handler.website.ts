@@ -17,7 +17,7 @@ export default class HandlerWebsite {
             readdirSync(`${__dirname}/routes/${route}`).forEach((subroute: string) => {
 
                 const data: RouteType = require(`${__dirname}/routes/${route}/${subroute}`).default
-                this.loadRoute(`/${route}${data.route}`, data)
+                this.loadRoute(`/${route}/${data.route}`, data)
 
             })
         })
@@ -34,6 +34,7 @@ export default class HandlerWebsite {
     private loadRoute(route: string, data: RouteType): void {
 
         // console.log(route, data)
+        console.log(`Route: ${route}; Method: ${data.method}`)
 
         // @todo - Add permissions handler
         switch (data.method) {

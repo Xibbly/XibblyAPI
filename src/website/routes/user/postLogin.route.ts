@@ -3,12 +3,11 @@ import RouteType from '../../../types/website.type'
 export default {
 
     route: 'login',
-    method: 'USE',
-    permission: 'null',
+    method: 'POST',
 
     run({res}) {
 
-        return res.render('login')
+        return res.render('panel')
 
     }
 

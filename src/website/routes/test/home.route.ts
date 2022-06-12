@@ -4,7 +4,6 @@ export default {
 
     route: '',
     method: 'USE',
-    permission: 'null',
 
     run({res}) {
 

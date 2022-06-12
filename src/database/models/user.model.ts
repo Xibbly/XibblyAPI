@@ -17,6 +17,11 @@ export const data: DatabaseType = {
             unique: true
         },
 
+        password: {
+            type: String,
+            required: true,
+        },
+
         permissions: {
             type: Array,
             required: true
