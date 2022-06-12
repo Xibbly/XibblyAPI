@@ -8,8 +8,8 @@ export default {
 
     run({res}) {
 
-        return res.render('home');
+        return res.render('home')
 
     }
 
-} as RouteType;
+} as RouteType

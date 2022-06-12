@@ -13,22 +13,20 @@ export default class HandlerWebsite {
     // @todo - Function -> Class (routes)
     private async handler(): Promise<void> {
 
-        readdirSync(`${__dirname}/routes`).forEach(route => {
-            if (route.endsWith('.route.js')) {
+        readdirSync(`${__dirname}/routes`).filter((name: string) => !name.endsWith('.route.js')).forEach(route => {
+            readdirSync(`${__dirname}/routes/${route}`).forEach((subroute: string) => {
+
+                const data: RouteType = require(`${__dirname}/routes/${route}/${subroute}`).default
+                this.loadRoute(`/${route}${data.route}`, data)
+
+            })
+        })
+
+        readdirSync(`${__dirname}/routes`).filter((name: string) => name.endsWith('.route.js')).forEach(route => {
 
                 const data: RouteType = require(`${__dirname}/routes/${route}`).default
                 this.loadRoute(`${data.route}`, data)
 
-            } else {
-
-                readdirSync(`${__dirname}/routes/${route}`).forEach((subroute: string) => {
-
-                    const data: RouteType = require(`${__dirname}/routes/${route}/${subroute}`).default
-                    this.loadRoute(`${route}${data.route}`, data)
-
-                })
-
-            }
         })
 
     }

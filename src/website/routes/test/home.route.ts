@@ -2,14 +2,14 @@ import RouteType from '../../../types/website.type'
 
 export default {
 
-    route: '/',
+    route: '',
     method: 'USE',
     permission: 'null',
 
     run({res}) {
 
-        return res.send('OK');
+        return res.send('OK')
 
     }
 
-} as RouteType;
+} as RouteType
