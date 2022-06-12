@@ -40,10 +40,10 @@ export default class HandlerWebsite {
         switch (data.method) {
             case "USE":
                 this.app.use(route, (req, res, next) => data.run({req, res, next}))
-                break
+                break;
             case "POST":
                 this.app.post(route, (req, res, next) => data.run({req, res, next}))
-                break
+                break;
         }
 
     }
