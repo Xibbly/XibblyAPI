@@ -15,7 +15,7 @@ export default class UserHandler {
         const hashPassword = await hash(password, 10)
 
         const dateToInsert: UserModelType = {
-            id: await models.get('users')?.count() || 0,
+            id: (await models.get('users')?.count() + 1) || 1,
             name,
             password: hashPassword,
             permissions: [],
