@@ -38,8 +38,8 @@ export default class HandlerWebsite {
 
         // @todo - Add permissions handler
         switch (data.method) {
-            case "USE":
-                this.app.use(route, (req, res, next) => data.run({req, res, next}))
+            case "GET":
+                this.app.get(route, (req, res, next) => data.run({req, res, next}))
                 break;
             case "POST":
                 this.app.post(route, (req, res, next) => data.run({req, res, next}))

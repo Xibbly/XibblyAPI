@@ -3,7 +3,7 @@ import RouteType from '../../../types/website.type'
 export default {
 
     route: 'login',
-    method: 'USE',
+    method: 'GET',
 
     run({res}) {
 

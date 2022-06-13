@@ -9,7 +9,7 @@ export interface RouteArguments {
 
 export default interface RouteType {
     route: string
-    method: 'USE' | 'POST'
+    method: 'GET' | 'POST'
     permissions?: string
     disabled?: boolean
     run: (data: RouteArguments) => any
