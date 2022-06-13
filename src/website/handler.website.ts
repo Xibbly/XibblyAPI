@@ -37,7 +37,7 @@ export default class HandlerWebsite {
 
         // @todo - Add permissions handler
         if (data.get) {
-            console.log(`Route: ${route}; Methid: POST`)
+            console.log(`Route: ${route}; Methid: GET`)
             this.app.get(route, (req, res, next) => data.get({req, res, next}))
         }
 
