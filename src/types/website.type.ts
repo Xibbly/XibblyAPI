@@ -12,8 +12,8 @@ export default interface RouteType {
     permissions?: string
     disabled?: boolean
 
-    get: (data: RouteArguments) => any
-    post: (data: RouteArguments) => any
+    get?: (data: RouteArguments) => any
+    post?: (data: RouteArguments) => any
 
 }
 
