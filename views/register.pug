@@ -7,14 +7,19 @@ append title
 
 
 append content
+
+    if error
+        .error
+            | #{error}
+
     form(method='POST' action='register')
-        | Login:
+        | Nazwa użytkownika:&nbsp;
         input(type='text' name='login')
         br
-        | Hasło:
+        | Hasło:&nbsp;
         input(type='password' name='password')
         br
-        | Powtórz hasło:
-        input(type='password' name='passwd')
+        | Powtórz hasło:&nbsp;
+        input(type='password' name='confirmPassword')
         br
         input(type='submit' value='OK')

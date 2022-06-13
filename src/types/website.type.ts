@@ -12,14 +12,14 @@ export default interface RouteType {
     permissions?: string
     disabled?: boolean
 
-    get?: (data: RouteArguments) => any
-    post?: (data: RouteArguments) => any
+    get: (data: RouteArguments) => any
+    post: (data: RouteArguments) => any
 
 }
 
 declare module 'express-session' {
     interface SessionData {
-        user: Omit<UserModelType, 'password'>
+        user: Omit<UserModelType, 'password' | 'ip'>
         [x: string]: any
     }
 }

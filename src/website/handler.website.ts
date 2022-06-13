@@ -33,9 +33,7 @@ export default class HandlerWebsite {
 
     private loadRoute(route: string, data: RouteType): void {
 
-        // console.log(route, data)
-
-        // @todo - Add permissions handler
+        // @todo - Add permissions handler and check if user is logged for panel and user route
         if (data.get) {
             console.log(`Route: ${route}; Methid: GET`)
             this.app.get(route, (req, res, next) => data.get({req, res, next}))

@@ -4,5 +4,7 @@ export default interface UserModelType {
     password: string
     permissions: string[]
     createdAt: Date
-    modifiedAt: Date,
+    modifiedAt: Date
+    deleted: boolean
+    ip: string
 }

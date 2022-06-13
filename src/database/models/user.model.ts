@@ -35,6 +35,16 @@ export const data: DatabaseType = {
         modifiedAt: {
             type: Date,
             required: true
+        },
+
+        deleted: {
+            type: Boolean,
+            default: false
+        },
+
+        ip: {
+            type: String,
+            required: true
         }
 
     })
