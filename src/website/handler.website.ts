@@ -24,8 +24,8 @@ export default class HandlerWebsite {
 
         readdirSync(`${__dirname}/routes`).filter((name: string) => name.endsWith('.route.js')).forEach(route => {
 
-                const data: RouteType = require(`${__dirname}/routes/${route}`).default
-                this.loadRoute(`${data.route}`, data)
+            const data: RouteType = require(`${__dirname}/routes/${route}`).default
+            this.loadRoute(`${data.route}`, data)
 
         })
 
@@ -34,16 +34,16 @@ export default class HandlerWebsite {
     private loadRoute(route: string, data: RouteType): void {
 
         // console.log(route, data)
-        console.log(`Route: ${route}; Method: ${data.method}`)
 
         // @todo - Add permissions handler
-        switch (data.method) {
-            case "GET":
-                this.app.get(route, (req, res, next) => data.run({req, res, next}))
-                break;
-            case "POST":
-                this.app.post(route, (req, res, next) => data.run({req, res, next}))
-                break;
+        if (data.get) {
+            console.log(`Route: ${route}; Methid: POST`)
+            this.app.get(route, (req, res, next) => data.get({req, res, next}))
+        }
+
+        if (data.post) {
+            console.log(`Route: ${route}; Methid: POST`)
+            this.app.post(route, (req, res, next) => data.post({req, res, next}))
         }
 
     }

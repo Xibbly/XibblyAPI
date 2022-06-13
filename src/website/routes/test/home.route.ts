@@ -3,9 +3,8 @@ import RouteType from '../../../types/website.type'
 export default {
 
     route: '',
-    method: 'GET',
 
-    run({res}) {
+    get({res}) {
 
         return res.send('test OK')
 

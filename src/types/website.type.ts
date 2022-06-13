@@ -9,10 +9,12 @@ export interface RouteArguments {
 
 export default interface RouteType {
     route: string
-    method: 'GET' | 'POST'
     permissions?: string
     disabled?: boolean
-    run: (data: RouteArguments) => any
+
+    get: (data: RouteArguments) => any
+    post: (data: RouteArguments) => any
+
 }
 
 declare module 'express-session' {

@@ -3,9 +3,14 @@ import RouteType from '../../../types/website.type'
 export default {
 
     route: 'register',
-    method: 'POST',
 
-    run({req, res}) {
+    get({res}) {
+
+        return res.render('register')
+
+    },
+
+    post({req, res}) {
 
         console.log('ok')
         console.log(req.body)
