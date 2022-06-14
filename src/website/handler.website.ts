@@ -33,6 +33,9 @@ export default class HandlerWebsite {
 
     private loadRoute(route: string, data: RouteType): void {
 
+        if (data.disabled)
+            return
+
         if (data.get) {
             console.log(`Route: ${route}; Methid: GET`)
 
