@@ -5,7 +5,7 @@ import UserModelType from '../../types/models/user.modelType'
 export default class UserHandler {
 
     async login(name: string, password: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
-        const data = await models.get('users')?.findOne({name})
+        const data = await models.get('users')?.findOne({name, deleted: false})
 
         if (!data || await compare(data.password, password)) {
             return false
@@ -23,7 +23,7 @@ export default class UserHandler {
 
     async createNew(name: string, password: string, ip: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
 
-        if (await models.get('users')?.findOne({name})) {
+        if (await models.get('users')?.findOne({name, deleted: false})) {
 
             return false
 
