@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response} from 'express'
-import UserModelType from './models/user.modelType'
+import UserModelType, {PermissionsType as UserPermissionsType} from './models/user.modelType'
+import {PermissionsType as TokenPermissionsType} from './models/token.modelType'
 
 export interface RouteArguments {
     req: Request
@@ -9,8 +10,8 @@ export interface RouteArguments {
 
 export default interface RouteType {
     route: string
-    permissions?: Array<'*' | 'admin_panel' | 'view_users' | 'manage_users' | 'view_tokens' | 'manage_tokens'>
-    tokenPermissions?: Array<'*'>
+    permissions?: UserPermissionsType
+    tokenPermissions?: TokenPermissionsType
     disabled?: boolean
     mustLogin?: boolean
 
