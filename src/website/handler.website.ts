@@ -1,5 +1,5 @@
 import {readdirSync} from 'fs'
-import {Application} from 'express'
+import {Application, Request} from 'express'
 import RouteType from '../types/website.type'
 
 export default class HandlerWebsite {
@@ -10,7 +10,6 @@ export default class HandlerWebsite {
 
     }
 
-    // @todo - Function -> Class (routes)
     private handler(): void {
 
         readdirSync(`${__dirname}/routes`).filter((name: string) => !name.endsWith('.route.js')).forEach(route => {
@@ -33,19 +32,41 @@ export default class HandlerWebsite {
 
     private loadRoute(route: string, data: RouteType): void {
 
-        // @todo - Add permissions handler and check if user is logged for panel and user route
+        // @todo - Add permissions handler and check login handler
         if (data.get) {
             console.log(`Route: ${route}; Methid: GET`)
-            this.app.get(route, (req, res, next) => data.get({req, res, next}))
+
+            this.app.get(route, async (req, res, next) => {
+
+                if (data.mustLogin) {
+                    if (!this.isLogged(req))
+                        return res.redirect('/')
+
+                    if (data.permissions && !(await this.hasPermissions(req.session.user?.id!, data.permissions)))
+                        return res.redirect('/')
+                }
+
+                data.get({req, res, next})
+
+            })
         }
 
         if (data.post) {
             console.log(`Route: ${route}; Methid: POST`)
+
             this.app.post(route, (req, res, next) => data.post({req, res, next}))
         }
 
     }
 
-    // private hasPermissions() {}
+    private isLogged(req: Request): boolean {
+        if (!req.session.user)
+            return false
+        return true
+    }
+
+    private async hasPermissions(userID: number, permissions: string[]): Promise<boolean> {
+        return true
+    }
 
 }

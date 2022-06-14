@@ -9,8 +9,9 @@ export interface RouteArguments {
 
 export default interface RouteType {
     route: string
-    permissions?: string
+    permissions?: string[]
     disabled?: boolean
+    mustLogin?: boolean
 
     get: (data: RouteArguments) => any
     post: (data: RouteArguments) => any

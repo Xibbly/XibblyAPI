@@ -8,7 +8,7 @@ export default {
 
     get({res}) {
 
-        return res.render('register')
+        return res.render('user/register')
 
     },
 

@@ -6,13 +6,13 @@ export default {
 
     get({res}) {
 
-        return res.render('login')
+        return res.render('user/login')
 
     },
 
     post({res}) {
 
-        return res.render('panel')
+        return res.redirect('/panel')
 
     }
 
