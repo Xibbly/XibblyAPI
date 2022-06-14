@@ -1,18 +1,10 @@
 extends template
 
-append content
+append head
     link(rel='stylesheet' href='/css/home.css')
 
 append title
-    #titleHome
-        #titleHomeText
-            | Strona główna
-        a#titleHomeArrows(href='#content')
-            .titleHomeArrow
-            .titleHomeArrow
-            .titleHomeArrow
+    | Strona główna
 
 
 append content
-    #contentHome
-        | Test!!!

@@ -3,19 +3,42 @@ html(lang="pl")
 
     head
 
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
         title XibblyAPI
 
         link(rel='stylesheet' href='/css/style.css')
+        link(rel='stylesheet' href='/css/navbar.css')
 
-        block head
+    block head
 
     body
-        section#title
+        .navbar
+            a.navbar-brand(href='/') XibblyAPI
+
+            a.toggle-button(href='#')
+                span.bar
+                span.bar
+                span.bar
+
+            .navbar-links
+                ul
+                    if !user
+                        li
+                            a(href='/user/login') Zaloguj się
+                    else
+                        li
+                            a(href='/panel') Panel
+                        li
+                            a(href='/user/logout') Wyloguj się
+
+
+
+        .title
             block title
 
-        section#content
+        .content
             block content
 
+    script(src='/js/navbar.js')
     block js
