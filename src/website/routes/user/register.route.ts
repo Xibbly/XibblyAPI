@@ -15,16 +15,26 @@ export default {
     async post({req, res}) {
 
         if (!req.body.login || !req.body.password || !req.body.confirmPassword)
-            return res.render('register', {
-                error: 'Wprowadzono błędne dane!'
+            return res.render('user/register', {
+                error: 'Uzupełnij poprawnie formularz!'
+            })
+
+        if (req.body.login.length < 3)
+            return res.render('user/register', {
+                error: 'Login powinien mieć minimum 3 znaki!'
+            })
+
+        if (req.body.password.length < 8)
+            return res.render('user/register', {
+                error: 'Hasło powinno mieć minimum 8 znaków!'
             })
 
         if (req.body.password != req.body.confirmPassword)
-            return res.render('register', {
+            return res.render('user/register', {
                 error: 'Hasła nie są sobie równe!'
             })
 
-        // @todo -> IP
+        // @todo -> IP and max 3 acc for 1 IP
         const response = await new UserHandler().createNew(req.body.login, req.body.password, "IP")
 
         if (!response)

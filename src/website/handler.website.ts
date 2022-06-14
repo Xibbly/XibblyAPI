@@ -1,6 +1,7 @@
 import {readdirSync} from 'fs'
 import {Application, Request} from 'express'
 import RouteType from '../types/website.type'
+import * as stream from "stream";
 
 export default class HandlerWebsite {
 
@@ -32,7 +33,6 @@ export default class HandlerWebsite {
 
     private loadRoute(route: string, data: RouteType): void {
 
-        // @todo - Add permissions handler and check login handler
         if (data.get) {
             console.log(`Route: ${route}; Methid: GET`)
 
@@ -40,10 +40,10 @@ export default class HandlerWebsite {
 
                 if (data.mustLogin) {
                     if (!this.isLogged(req))
-                        return res.redirect('/')
+                        return res.redirect('/user/login')
 
-                    if (data.permissions && !(await this.hasPermissions(req.session.user?.id!, data.permissions)))
-                        return res.redirect('/')
+                    if (data.permissions && !(await this.hasPermissions(req.session.user?.permissions!, data.permissions)))
+                        return res.redirect('/user/login')
                 }
 
                 data.get({req, res, next})
@@ -65,8 +65,18 @@ export default class HandlerWebsite {
         return true
     }
 
-    private async hasPermissions(userID: number, permissions: string[]): Promise<boolean> {
-        return true
+    private async hasPermissions(userPermissions: string[], permissions: string[]): Promise<boolean> {
+        let hasPermissions: string[] = []
+
+        if (!userPermissions.includes('*'))
+            permissions.forEach((permission: string) => {
+                if (userPermissions.includes(permission))
+                    hasPermissions.push(permission)
+            })
+        else
+            hasPermissions = permissions
+
+        return hasPermissions.length == permissions.length
     }
 
 }
