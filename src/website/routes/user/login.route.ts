@@ -13,6 +13,8 @@ export default {
 
     async post({req, res}) {
 
+        if (req.session.user)
+            return res.redirect('/panel')
 
         const response = await new UserHandler().login(req.body.login || '', req.body.pass || '')
         if (!response)

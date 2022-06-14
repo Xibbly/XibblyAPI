@@ -7,4 +7,13 @@ append title
 
 
 append content
-    | #{user.name}
+    center
+        | #{user.name}
+    br
+    br
+
+    if user.permissions.includes('*') || user.permissions.includes('admin_panel')
+        a(href='/adminpanel') Panel admina
+        br
+
+    a(href='/panel/tokens') Twoje tokeny

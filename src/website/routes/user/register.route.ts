@@ -14,6 +14,9 @@ export default {
 
     async post({req, res}) {
 
+        if (req.session.user)
+            return res.redirect('/panel')
+
         if (!req.body.login || !req.body.password || !req.body.confirmPassword)
             return res.render('user/register', {
                 error: 'Uzupełnij poprawnie formularz!'
