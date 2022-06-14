@@ -43,7 +43,7 @@ export default class HandlerWebsite {
                         return res.redirect('/user/login')
 
                     if (data.permissions && !(await this.hasPermissions(req.session.user?.permissions!, data.permissions)))
-                        return res.redirect('/user/login')
+                        return res.redirect('/')
                 }
 
                 data.get({req, res, next})
