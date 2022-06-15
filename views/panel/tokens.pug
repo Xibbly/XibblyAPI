@@ -1,6 +1,7 @@
 extends ../template
 
-append content
+append head
+    link(rel='stylesheet' href='/css/panel.css')
 
 append title
     | Panel - zarządzanie tokenami
@@ -12,6 +13,17 @@ append content
     br
     br
 
-    ul
-        each token in tokens
-            li #{JSON.stringify(token)}
+    each token in tokens
+        .cards
+            .card
+                .card_title
+                    | TOKEN: #{token.token}
+                .card_description
+                    | Stworzony: #{token.createdAt}
+                    br
+                    | Modyfikowany: #{token.modifiedAt}
+                .card_buttons
+                    .card_button
+                        button.button_blue Regeneruj
+                    .card_button
+                        button.button_red Usuń

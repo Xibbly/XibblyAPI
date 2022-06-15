@@ -6,6 +6,7 @@ html, body {
     background: #212121;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
+    box-sizing: border-box;
 }
 
 .title {
