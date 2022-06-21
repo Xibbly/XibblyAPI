@@ -21,7 +21,7 @@ html(lang="pl")
                     span.navbar-toggler-icon
                 #navbarSupportedContent.collapse.navbar-collapse
                     ul.navbar-nav.me-auto
-                        li.nav-item
+                        //li.nav-item
                             a.nav-link(href='/') Strona główna
                     .ml-auto
                             if !user
@@ -29,10 +29,10 @@ html(lang="pl")
                             else
                                 .btn-group
                                     button.btn.btn-primary(type='button')
-                                        // @todo AVATAR when Discord is linked
+                                        // @todo AVATAR when Discord is linked and redirect to profile settings
                                         | #{user.name}
                                     button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-                                    ul.dropdown-menu
+                                    ul.dropdown-menu.dropdown-menu-dark
                                         li
                                             a.dropdown-item(href='/panel') Panel
                                         li
