@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 html, body {
-    margin: 0;
-    padding: 0;
-    background: #212121;
     font-family: 'Montserrat', sans-serif;
-    color: #fff;
-    box-sizing: border-box;
-}
-
-.title {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 2rem;
 }

@@ -1,7 +1,6 @@
 extends ../template
 
 append head
-    link(rel='stylesheet' href='/css/panel.css')
 
 append title
     | Panel - zarządzanie tokenami
@@ -13,17 +12,27 @@ append content
     br
     br
 
-    each token in tokens
-        .cards
-            .card
-                .card_title
-                    | TOKEN: #{token.token}
-                .card_description
-                    | Stworzony: #{token.createdAt}
-                    br
-                    | Modyfikowany: #{token.modifiedAt}
-                .card_buttons
-                    .card_button
-                        button.button_blue Regeneruj
-                    .card_button
-                        button.button_red Usuń
+    if tokens.length != 0
+        each token in tokens
+            .cards
+                .card
+                    .card_title
+                        | TOKEN: #{token.token}
+                    .card_description
+                        | Stworzony: #{token.createdAt.getHours()}:#{token.createdAt.getMinutes().length == 1 ? token.createdAt.getMinutes() : '0' + token.createdAt.getMinutes()} #{token.createdAt.getDate().length == 1 ? token.createdAt.getDate() : '0' + token.createdAt.getDate()}.#{token.createdAt.getMonth().length == 1 ? token.createdAt.getMonth() : '0' + token.createdAt.getMonth()}.#{token.createdAt.getFullYear()}
+                        br
+                        | Modyfikowany: #{token.modifiedAt.getHours()}:#{token.modifiedAt.getMinutes().length == 1 ? token.modifiedAt.getMinutes() : '0' + token.modifiedAt.getMinutes()} #{token.modifiedAt.getDate().length == 1 ? token.modifiedAt.getDate() : '0' + token.modifiedAt.getDate()}.#{token.modifiedAt.getMonth().length == 1 ? token.modifiedAt.getMonth() : '0' + token.modifiedAt.getMonth()}.#{token.modifiedAt.getFullYear()}
+                    .card_buttons
+                        .card_button
+                            a(href='/token/regenerate?token=' + token.token)
+                                button.button_blue Regeneruj
+                        | &nbsp;
+                        .card_button
+                            a(href='/token/delete?token=' + token.token)
+                                button.button_red Usuń
+    else
+        | Nie posiadasz tokenów? Wygeneruj
+        br
+
+    a(href='/token/generate')
+        button.button_green Generuj

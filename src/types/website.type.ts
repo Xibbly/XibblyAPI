@@ -10,7 +10,7 @@ export interface RouteArguments {
 
 export default interface RouteType {
     route: string
-    permissions?: UserPermissionsType
+    permissions?: UserPermissionsType[]
     tokenPermissions?: TokenPermissionsType
     disabled?: boolean
     mustLogin?: boolean
