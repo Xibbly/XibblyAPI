@@ -1,5 +1,6 @@
 * - all permissions
 
 unlimited_tokens - unlimited tokens
+admin_panel - admin panel access
 
 premium - premium
