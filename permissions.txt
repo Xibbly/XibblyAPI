@@ -1,0 +1,5 @@
+* - all permissions
+
+unlimited_tokens - unlimited tokens
+
+premium - premium

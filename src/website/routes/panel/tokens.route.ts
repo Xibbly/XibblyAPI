@@ -14,6 +14,24 @@ export default {
             token: 'gnIYGIyuniuYNGG',
             createdAt: new Date(),
             modifiedAt: new Date()
+        }, {
+            userId: 1,
+            permissions: [],
+            token: 'gnIYGIyuniuYNGG',
+            createdAt: new Date(),
+            modifiedAt: new Date()
+        }, {
+            userId: 1,
+            permissions: [],
+            token: 'gnIYGIyuniuYNGG',
+            createdAt: new Date(),
+            modifiedAt: new Date()
+        }, {
+            userId: 1,
+            permissions: [],
+            token: 'gnIYGIyuniuYNGG',
+            createdAt: new Date(),
+            modifiedAt: new Date()
         }]
 
         return res.render('panel/tokens', {

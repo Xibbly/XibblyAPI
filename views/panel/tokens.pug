@@ -7,14 +7,30 @@ append title
 
 
 append content
-    center
-        | #{user.name}
-    br
+    if user.permissions.includes('*') || user.permissions.includes('unlimited_tokens')
+        center
+            a(href='/token/generate')
+                button.button_green Generuj
+
+    else if user.permissions.includes('premium') && tokens.length < process.env.MAX_PREMIUM_TOKENS
+        center
+            a(href='/token/generate')
+                button.button_green Generuj
+
+    else if tokens.length < process.env.MAX_TOKENS
+        center
+            a(href='/token/generate')
+                button.button_green Generuj
+
+    else
+        center
+            | Nie możesz generować więcej tokenów.
+
     br
 
     if tokens.length != 0
         each token in tokens
-            .card.bg-dark(style='width: 20rem;')
+            .card.bg-dark
                 .card-body
                     h5.card-title
                         | TOKEN: #{token.token}
@@ -27,9 +43,6 @@ append content
                     a(href='/token/delete?token=' + token.token)
                         button.button_red Usuń
     else
-        | Nie posiadasz tokenów? Wygeneruj
+        center
+            | Nie posiadasz tokenów? Wygeneruj
         br
-
-    br
-    a(href='/token/generate')
-        button.button_green Generuj

@@ -31,7 +31,10 @@ html(lang="pl")
                                     button.btn.btn-primary(type='button')
                                         // @todo AVATAR when Discord is linked and redirect to profile settings
                                         | #{user.name}
-                                    button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                    if user.permissions.includes('*') || user.permissions.includes('premium')
+                                        button.btn.btn-warning.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                    else
+                                        button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                                     ul.dropdown-menu.dropdown-menu-dark
                                         li
                                             a.dropdown-item(href='/panel') Panel
