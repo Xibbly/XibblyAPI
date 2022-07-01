@@ -31,7 +31,7 @@ export default class IndexWebsite {
         }));
 
         this.app.listen(process.env.PORT, () => {
-            console.log('API work!')
+            console.log(`API work on port ${process.env.PORT}!`)
         })
     }
 
