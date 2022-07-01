@@ -1,4 +1,4 @@
-export type PermissionsType = '*' | 'admin_panel' | 'view_users' | 'manage_users' | 'view_tokens' | 'manage_tokens'
+export type PermissionsType = '*' | 'unlimited_tokens' | 'admin_panel' | 'view_users' | 'manage_users' | 'view_tokens' | 'manage_tokens' | 'premium'
 
 export default interface UserModelType {
     id: number

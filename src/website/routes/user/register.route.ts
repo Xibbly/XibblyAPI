@@ -37,7 +37,7 @@ export default {
                 error: 'Hasła nie są sobie równe!'
             })
 
-        // @todo -> max 3 acc for 1 IP
+        // @todo max 3 acc for 1 IP
         const IP = req.header('x-forwarded-for') || 'localhost'
 
         const response = await new UserHandler().createNew(req.body.login, req.body.password, IP)

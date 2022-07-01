@@ -9,17 +9,17 @@ append title
 append content
     if user.permissions.includes('*') || user.permissions.includes('unlimited_tokens')
         center
-            a(href='/token/generate')
+            a(href='/tokens/generate')
                 button.button_green Generuj
 
     else if user.permissions.includes('premium') && tokens.length < process.env.MAX_PREMIUM_TOKENS
         center
-            a(href='/token/generate')
+            a(href='/tokens/generate')
                 button.button_green Generuj
 
     else if tokens.length < process.env.MAX_TOKENS
         center
-            a(href='/token/generate')
+            a(href='/tokens/generate')
                 button.button_green Generuj
 
     else
@@ -34,13 +34,14 @@ append content
                 .card-body
                     h5.card-title
                         | TOKEN: #{token.token}
+                    // @todo date formatter
                     p.card-text
-                        | Stworzony: #{token.createdAt.getHours()}:#{token.createdAt.getMinutes().length == 1 ? token.createdAt.getMinutes() : '0' + token.createdAt.getMinutes()} #{token.createdAt.getDate().length == 1 ? token.createdAt.getDate() : '0' + token.createdAt.getDate()}.#{token.createdAt.getMonth().length == 1 ? token.createdAt.getMonth() : '0' + token.createdAt.getMonth()}.#{token.createdAt.getFullYear()}
+                        | Stworzony: #{token.createdAt}
                         br
-                        | Modyfikowany: #{token.modifiedAt.getHours()}:#{token.modifiedAt.getMinutes().length == 1 ? token.modifiedAt.getMinutes() : '0' + token.modifiedAt.getMinutes()} #{token.modifiedAt.getDate().length == 1 ? token.modifiedAt.getDate() : '0' + token.modifiedAt.getDate()}.#{token.modifiedAt.getMonth().length == 1 ? token.modifiedAt.getMonth() : '0' + token.modifiedAt.getMonth()}.#{token.modifiedAt.getFullYear()}
-                    a(href='/token/regenerate?token=' + token.token)
+                        | Modyfikowany: #{token.modifiedAt}
+                    a(href='/tokens/regenerate?token=' + token.token)
                         button.button_blue Regeneruj
-                    a(href='/token/delete?token=' + token.token)
+                    a(href='/tokens/delete?token=' + token.token)
                         button.button_red Usuń
     else
         center

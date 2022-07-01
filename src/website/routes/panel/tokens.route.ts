@@ -1,38 +1,14 @@
 import RouteType from '../../../types/website.type'
-import TokenModelType from '../../../types/models/token.modelType'
+import TokensHandler from "../../../database/handlers/tokens.handler";
 
 export default {
 
     route: 'tokens',
     mustLogin: true,
 
-    get({req, res}) {
+    async get({req, res}) {
 
-        const tokens: TokenModelType[] = [{
-            userId: 1,
-            permissions: [],
-            token: 'gnIYGIyuniuYNGG',
-            createdAt: new Date(),
-            modifiedAt: new Date()
-        }, {
-            userId: 1,
-            permissions: [],
-            token: 'gnIYGIyuniuYNGG',
-            createdAt: new Date(),
-            modifiedAt: new Date()
-        }, {
-            userId: 1,
-            permissions: [],
-            token: 'gnIYGIyuniuYNGG',
-            createdAt: new Date(),
-            modifiedAt: new Date()
-        }, {
-            userId: 1,
-            permissions: [],
-            token: 'gnIYGIyuniuYNGG',
-            createdAt: new Date(),
-            modifiedAt: new Date()
-        }]
+        const tokens = await new TokensHandler().getAll(req.session.user?.id!)
 
         return res.render('panel/tokens', {
             user: req.session.user,

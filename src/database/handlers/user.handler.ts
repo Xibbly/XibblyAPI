@@ -4,7 +4,7 @@ import UserModelType from '../../types/models/user.modelType'
 
 export default class UserHandler {
 
-    async login(name: string, password: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
+    public async login(name: string, password: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
         const data = await models.get('users')?.findOne({name, deleted: false})
 
         if (!data || await compare(data.password, password)) {
@@ -21,8 +21,7 @@ export default class UserHandler {
         return dateFix
     }
 
-    async createNew(name: string, password: string, ip: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
-
+    public async createNew(name: string, password: string, ip: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
         if (await models.get('users')?.findOne({name, deleted: false})) {
 
             return false
@@ -48,7 +47,6 @@ export default class UserHandler {
 
         console.log(dateToInsert)
         return dateToInsert
-
     }
 
 }

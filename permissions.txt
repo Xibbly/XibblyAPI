@@ -1,6 +1,17 @@
+user:
+
 * - all permissions
 
 unlimited_tokens - unlimited tokens
 admin_panel - admin panel access
+view_users - view all users accounts
+manage_users - manage all users accounts
+view_tokens - view all tokens
+manage_tokens - manage all tokens
 
 premium - premium
+
+
+tokens:
+
+* - all permissions
