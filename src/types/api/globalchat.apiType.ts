@@ -4,5 +4,6 @@ export default interface GlobalChatApiType {
     tag: string,
     avatarUrl: string,
     guildId: string,
-    content: string
+    content: string,
+    filesUrl: string[]
 }
