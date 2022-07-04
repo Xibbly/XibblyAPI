@@ -45,7 +45,6 @@ export default class UserHandler {
         delete dateToInsert.password
         delete dateToInsert.ip
 
-        console.log(dateToInsert)
         return dateToInsert
     }
 

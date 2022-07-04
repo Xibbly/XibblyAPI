@@ -15,7 +15,7 @@ export class IndexDatabase {
 
     private connect(): void {
 
-        mongooseConnect(`mongodb://${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE}`).then(() => {
+        mongooseConnect(process.env.DATABASE_URL as string).then(() => {
             console.log('Connected to the database!')
         })
 

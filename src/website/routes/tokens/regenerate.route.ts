@@ -9,17 +9,12 @@ export default {
 
     async get({req, res}) {
 
-        console.log(1)
-
         if (!req.query.token)
             return res.redirect('/panel/tokens')
-        console.log(1)
 
         const getToken = await new TokensHandler().getToken(req.query.token as string)
         if (!getToken || !getToken || getToken.userId !== req.session.user?.id || req.session.user.permissions.includes('manage_tokens'))
             return res.redirect('/panel/tokens')
-
-        console.log(1)
 
         await new TokensHandler().regenerate(req.query.token as string)
         return res.redirect('/panel/tokens')
