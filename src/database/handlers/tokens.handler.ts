@@ -24,7 +24,7 @@ export default class TokensHandler {
     }
 
     public async insert(userId: number, token: string): Promise<string> {
-        await models.get('token')?.insertMany([{
+        const x = await models.get('tokens')?.insertMany([{
             userId,
             token
         }])
@@ -37,13 +37,9 @@ export default class TokensHandler {
             createdAt: new DateUtil().formatDate(new Date()),
             modifiedAt: new DateUtil().formatDate(new Date())
         }
-        console.log(data)
+
         const token = await this.createToken(userId, data)
-
-        console.log(token)
-
         await this.insert(userId, token)
-        console.log(await this.getToken(token))
 
         return await this.getToken(token)
     }
@@ -55,16 +51,16 @@ export default class TokensHandler {
             createdAt: decryptedToken.createdAt as string,
             modifiedAt: new DateUtil().formatDate(new Date())
         })
-        await models.get('token')?.updateOne({token}, {token: newToken})
+        await models.get('tokens')?.updateOne({token}, {token: newToken})
         return newToken
     }
 
     public async delete(token: string): Promise<void> {
-        await models.get('token')?.deleteOne({token})
+        await models.get('tokens')?.deleteOne({token})
     }
 
     public async getAllForUser(userId: number): Promise<TokenModelType[]> {
-        const tokens = await models.get('token')?.find({userId})
+        const tokens = await models.get('tokens')?.find({userId})
 
         if (!tokens)
             return []
