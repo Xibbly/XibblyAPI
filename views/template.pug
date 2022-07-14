@@ -32,7 +32,9 @@ html(lang="pl")
                                 button.btn.btn-primary(type='button')
                                     // @todo AVATAR when Discord is linked and redirect to profile settings
                                     | #{user.name}
-                                if user.permissions.includes('*') || user.permissions.includes('premium')
+                                if user.permissions.includes('*') || user.permissions.includes('admin_panel')
+                                    button.btn.btn-danger.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                else if user.permissions.includes('premium')
                                     button.btn.btn-warning.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                                 else
                                     button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')

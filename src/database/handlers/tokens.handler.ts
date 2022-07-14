@@ -1,5 +1,6 @@
 import models from '../index.database'
 import TokenModelType from '../../types/models/token.modelType'
+import DateUtil from '../../utils/date.util'
 
 export default class TokensHandler {
 
@@ -34,8 +35,8 @@ export default class TokensHandler {
             userId,
             token: this.generateToken(),
             permissions: [],
-            createdAt: new Date(),
-            modifiedAt: new Date()
+            createdAt: new DateUtil().formatDate(new Date()),
+            modifiedAt: new DateUtil().formatDate(new Date())
         }])
         if (!token)
             return [][0]
@@ -53,7 +54,7 @@ export default class TokensHandler {
 
         const oldToken = tokenModel.token
         tokenModel.token = this.generateToken()
-        tokenModel.modifiedAt = new Date()
+        tokenModel.modifiedAt = new DateUtil().formatDate(new Date())
 
         const updated = await models.get('tokens')?.updateOne({
             token: oldToken

@@ -22,12 +22,12 @@ export const data: DatabaseType = {
         },
 
         createdAt: {
-            type: Date,
+            type: String,
             required: true
         },
 
         modifiedAt: {
-            type: Date,
+            type: String,
             required: true
         }
 
