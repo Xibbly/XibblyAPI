@@ -1,7 +1,6 @@
 import {readdirSync} from 'fs'
 import {Application, Request} from 'express'
 import RouteType from '../types/website.type'
-import * as stream from "stream";
 
 export default class HandlerWebsite {
 

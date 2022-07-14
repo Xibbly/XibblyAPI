@@ -1,7 +1,7 @@
 import RouteType from '../../../types/website.type'
 import GlobalChatApiType from '../../../types/api/globalchat.apiType'
-import axios from "axios";
-import TokensHandler from "../../../database/handlers/tokens.handler";
+import axios from 'axios'
+import TokensHandler from '../../../database/handlers/tokens.handler'
 
 export default {
 

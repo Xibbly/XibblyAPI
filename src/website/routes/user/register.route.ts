@@ -1,6 +1,5 @@
 import RouteType from '../../../types/website.type'
-import UserHandler from "../../../database/handlers/user.handler";
-import UserModelType from "../../../types/models/user.modelType";
+import UserHandler from '../../../database/handlers/user.handler'
 
 export default {
 

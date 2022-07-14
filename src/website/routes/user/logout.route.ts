@@ -1,5 +1,4 @@
 import RouteType from '../../../types/website.type'
-import UserHandler from "../../../database/handlers/user.handler";
 
 export default {
 

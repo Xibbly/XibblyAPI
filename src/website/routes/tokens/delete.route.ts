@@ -1,6 +1,5 @@
 import RouteType from '../../../types/website.type'
-import UserHandler from "../../../database/handlers/user.handler";
-import TokensHandler from "../../../database/handlers/tokens.handler";
+import TokensHandler from '../../../database/handlers/tokens.handler'
 
 export default {
 
