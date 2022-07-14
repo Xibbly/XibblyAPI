@@ -4,6 +4,6 @@ export default interface TokenModelType {
     userId: number
     token: string
     permissions?: PermissionsType[]
-    createdAt: Date
-    modifiedAt: Date
+    createdAt: Date | string
+    modifiedAt: Date | string
 }

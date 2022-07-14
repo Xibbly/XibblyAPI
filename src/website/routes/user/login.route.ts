@@ -16,7 +16,7 @@ export default {
         if (req.session.user)
             return res.redirect('/panel')
 
-        const response = await new UserHandler().login(req.body.login || '', req.body.pass || '')
+        const response = await new UserHandler().login(req.body.login || '', req.body.password || '')
         if (!response)
             return res.render('user/login', {
                 error: 'Błędne dane!'

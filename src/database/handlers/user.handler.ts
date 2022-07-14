@@ -1,4 +1,4 @@
-import {hash, compare} from 'bcrypt'
+import {compare, hash} from 'bcrypt'
 import models from '../index.database'
 import UserModelType from '../../types/models/user.modelType'
 
@@ -7,18 +7,18 @@ export default class UserHandler {
     public async login(name: string, password: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
         const data = await models.get('users')?.findOne({name, deleted: false})
 
-        if (!data || await compare(data.password, password)) {
+        if (!data || !await compare(password, data.password)) {
             return false
         }
 
-        const dateFix: any = {
+        const dataFix: any = {
             id: data.id,
             name,
             permissions: data.permissions,
             createdAt: data.createdAt,
             modifiedAt: data.modifiedAt,
         }
-        return dateFix
+        return dataFix
     }
 
     public async createNew(name: string, password: string, ip: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
@@ -30,7 +30,7 @@ export default class UserHandler {
 
         const hashPassword = await hash(password, 10)
 
-        const dateToInsert: any = {
+        const dataToInsert: any = {
             id: await models.get('users')?.count()! + 1,
             name,
             password: hashPassword,
@@ -40,12 +40,12 @@ export default class UserHandler {
             ip: ip
         }
 
-        await models.get('users')?.insertMany([dateToInsert])
+        await models.get('users')?.insertMany([dataToInsert])
 
-        delete dateToInsert.password
-        delete dateToInsert.ip
+        delete dataToInsert.password
+        delete dataToInsert.ip
 
-        return dateToInsert
+        return dataToInsert
     }
 
 }
