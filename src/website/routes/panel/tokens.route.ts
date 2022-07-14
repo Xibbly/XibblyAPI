@@ -12,11 +12,15 @@ export default {
 
         const tokens = await new TokensHandler().getAll(req.session.user?.id!)
 
-        tokens.map(async (token: TokenModelType) => {
-            token.createdAt = await new DateUtil().formatDate(token.createdAt as Date)
-            token.modifiedAt = await new DateUtil().formatDate(token.modifiedAt as Date)
-            console.log(token)
+        tokens.map((token: TokenModelType) => {
+            console.log(new DateUtil().formatDate(token.createdAt as Date))
+            console.log(new DateUtil().formatDate(token.modifiedAt as Date))
+            token.createdAt = new DateUtil().formatDate(token.createdAt as Date)
+            token.modifiedAt = new DateUtil().formatDate(token.modifiedAt as Date)
+            return token
         })
+
+        console.log(tokens)
 
         return res.render('panel/tokens', {
             user: req.session.user,

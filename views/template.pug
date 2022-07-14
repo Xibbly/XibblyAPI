@@ -9,6 +9,7 @@ html(lang="pl")
 
         link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous")
         link(rel='stylesheet' href='/css/style.css')
+        link(rel='stylesheet' href='/css/cookies.css')
 
     block head
 
@@ -24,33 +25,40 @@ html(lang="pl")
                         //li.nav-item
                             a.nav-link(href='/') Strona główna
                     .ml-auto
-                            if !user
-                                a.btn.btn-primary.text-light(href='/user/login') Zaloguj się
-                            else
-                                .btn-group
-                                    button.btn.btn-primary(type='button')
-                                        // @todo AVATAR when Discord is linked and redirect to profile settings
-                                        | #{user.name}
-                                    if user.permissions.includes('*') || user.permissions.includes('premium')
-                                        button.btn.btn-warning.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-                                    else
-                                        button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-                                    ul.dropdown-menu.dropdown-menu-dark
-                                        li
-                                            a.dropdown-item(href='/panel') Panel
-                                        li
-                                            hr.dropdown-divider
-                                        li
-                                            a.dropdown-item(href='/user/logout') Wyloguj się
+                        if !user
+                            a.btn.btn-primary.text-light(href='/user/login') Zaloguj się
+                        else
+                            .btn-group
+                                button.btn.btn-primary(type='button')
+                                    // @todo AVATAR when Discord is linked and redirect to profile settings
+                                    | #{user.name}
+                                if user.permissions.includes('*') || user.permissions.includes('premium')
+                                    button.btn.btn-warning.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                else
+                                    button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                ul.dropdown-menu.dropdown-menu-dark
+                                    li
+                                        a.dropdown-item(href='/panel') Panel
+                                    li
+                                        hr.dropdown-divider
+                                    li
+                                        a.dropdown-item(href='/user/logout') Wyloguj się
+
+    #cookies
+        .data
+            span
+                | Ta strona używa plików cookie. Korzystając z tej strony, zgadzasz się na używanie przez nas plików cookie.
+            br
+            button.btn.btn-success.btn-sm(type='button' onclick='new Cookies().close()') Wyrażam zgodę
+            a.btn.btn-primary.btn-sm(href='/cookies' role='button') Czytaj więcej
 
 
+    .title
+        block title
 
-
-        .title
-            block title
-
-        .container.content
-            block content
+    .container.content
+        block content
 
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous")
+    script(src="/js/cookies.js")
     block js
