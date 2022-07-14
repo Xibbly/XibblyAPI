@@ -2,7 +2,7 @@ import {connect as mongooseConnect, Model, model} from 'mongoose'
 import {readdirSync} from 'fs'
 import DatabaseType from '../types/database.type'
 
-const models = new Map<string, Model<any>>();
+const models = new Map<string, Model<any>>()
 
 export class IndexDatabase {
 

@@ -12,7 +12,8 @@ export default {
             return res.redirect('/panel/tokens')
 
         const getToken = await new TokensHandler().getToken(req.query.token as string)
-        if (!getToken || !getToken || getToken.userId !== req.session.user?.id || req.session.user.permissions.includes('manage_tokens'))
+        console.log(getToken)
+        if (!getToken || !getToken || getToken.userId !== req.session.user?.id || req.session.user?.permissions.includes('manage_tokens'))
             return res.redirect('/panel/tokens')
 
         await new TokensHandler().regenerate(req.query.token as string)

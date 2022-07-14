@@ -8,9 +8,7 @@ export default {
 
     async get({req, res}) {
 
-        const tokens = await new TokensHandler().getAll(req.session.user?.id!)
-
-        console.log(tokens)
+        const tokens = await new TokensHandler().getAllForUser(req.session.user?.id!)
 
         return res.render('panel/tokens', {
             user: req.session.user,

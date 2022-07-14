@@ -1,6 +1,6 @@
 export type PermissionsType = '*'
 
-export default interface TokenModelType {
+export default interface TokenType {
     userId: number
     token: string
     permissions?: PermissionsType[]

@@ -28,11 +28,12 @@ export default class IndexWebsite {
             },
             resave: true,
             saveUninitialized: true
-        }));
+        }))
 
         this.app.listen(process.env.PORT, () => {
             console.log(`API work on port ${process.env.PORT}!`)
         })
+
     }
 
 }

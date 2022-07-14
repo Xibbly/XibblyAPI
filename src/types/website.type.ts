@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express'
-import UserModelType, {PermissionsType as UserPermissionsType} from './models/user.modelType'
-import {PermissionsType as TokenPermissionsType} from './models/token.modelType'
+import UserType, {PermissionsType as UserPermissionsType} from './models/user.type'
+import {PermissionsType as TokenPermissionsType} from './models/token.type'
 
 export interface RouteArguments {
     req: Request
@@ -11,9 +11,10 @@ export interface RouteArguments {
 export default interface RouteType {
     route: string
     permissions?: UserPermissionsType[]
-    tokenPermissions?: TokenPermissionsType
+    tokenPermissions?: TokenPermissionsType[]
     disabled?: boolean
     mustLogin?: boolean
+    mustDiscordConnected?: boolean
 
     get: (data: RouteArguments) => any
     post: (data: RouteArguments) => any
@@ -21,8 +22,7 @@ export default interface RouteType {
 
 declare module 'express-session' {
     interface SessionData {
-        user: Omit<UserModelType, 'password' | 'ip'>
-
+        user: Omit<UserType, 'password' | 'ip'>
         [x: string]: any
     }
 }

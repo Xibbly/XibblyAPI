@@ -1,10 +1,10 @@
 import {compare, hash} from 'bcrypt'
 import models from '../index.database'
-import UserModelType from '../../types/models/user.modelType'
+import UserType from '../../types/models/user.type'
 
 export default class UserHandler {
 
-    public async login(name: string, password: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
+    public async login(name: string, password: string): Promise<Omit<UserType, 'password' | 'ip'> | false> {
         const data = await models.get('users')?.findOne({name, deleted: false})
 
         if (!data || !await compare(password, data.password)) {
@@ -20,7 +20,7 @@ export default class UserHandler {
         } as any)
     }
 
-    public async createNew(name: string, password: string, ip: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
+    public async createNew(name: string, password: string, ip: string): Promise<Omit<UserType, 'password' | 'ip'> | false> {
         if (await models.get('users')?.findOne({name, deleted: false})) {
 
             return false

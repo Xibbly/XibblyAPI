@@ -2,31 +2,39 @@ import DatabaseType from '../../types/database.type'
 import {Schema} from 'mongoose'
 
 export const data: DatabaseType = {
-    name: 'tokens',
+    name: 'globalchatVerify',
+
     schema: new Schema({
 
-        userId: {
-            type: Number,
+        token: {
+            type: String,
             required: true
         },
 
-        token: {
+        guildID: {
             type: String,
             required: true,
             unique: true
         },
 
-        permissions: {
-            type: Array,
-            required: true
+        inviteUrl: {
+            type: String,
+            required: true,
+            unique: true
         },
 
-        createdAt: {
+        webhookUrl: {
+            type: String,
+            required: true,
+            unique: true
+        },
+
+        moderatorID: {
             type: String,
             required: true
         },
 
-        modifiedAt: {
+        verifiedDate: {
             type: String,
             required: true
         }

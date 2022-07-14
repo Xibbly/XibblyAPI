@@ -11,10 +11,10 @@ export default {
         if (req.session.user?.permissions.includes('*') || req.session.user?.permissions.includes('unlimited_tokens')) {
             await new TokensHandler().createNew(req.session.user?.id!)
             return res.redirect('/panel/tokens')
-        } else if (req.session.user?.permissions.includes('premium') && (await new TokensHandler().getAll(req.session.user?.id!)).length < Number(process.env.MAX_PREMIUM_TOKENS)) {
+        } else if (req.session.user?.permissions.includes('premium') && (await new TokensHandler().getAllForUser(req.session.user?.id!)).length < Number(process.env.MAX_PREMIUM_TOKENS)) {
             await new TokensHandler().createNew(req.session.user?.id!)
             return res.redirect('/panel/tokens')
-        } else if ((await new TokensHandler().getAll(req.session.user?.id!)).length < Number(process.env.MAX_TOKENS)) {
+        } else if ((await new TokensHandler().getAllForUser(req.session.user?.id!)).length < Number(process.env.MAX_TOKENS)) {
             await new TokensHandler().createNew(req.session.user?.id!)
             return res.redirect('/panel/tokens')
         } else
