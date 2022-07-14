@@ -11,14 +11,13 @@ export default class UserHandler {
             return false
         }
 
-        const dataFix: any = {
+        return ({
             id: data.id,
             name,
             permissions: data.permissions,
             createdAt: data.createdAt,
             modifiedAt: data.modifiedAt,
-        }
-        return dataFix
+        } as any)
     }
 
     public async createNew(name: string, password: string, ip: string): Promise<Omit<UserModelType, 'password' | 'ip'> | false> {
