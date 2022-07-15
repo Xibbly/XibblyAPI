@@ -80,9 +80,9 @@ export default interface WebhookType {
     embeds?: embed[]
     allowed_mentions?: allowed_mentions
     // components: component[]
-    files: string[]
+    files?: string[]
     payload_json?: string
-    attachments: attachment[]
+    attachments?: attachment[]
     flags?: number
     thread_name?: string
 }

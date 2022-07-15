@@ -16,8 +16,8 @@ export default {
         if (!data.token || !data.userId || !data.tag || !data.avatarUrl || !data.guildId || !(data.content || (data.filesUrl && data.filesUrl[0])))
             return res.status(400).send('Missing data')
 
-        // if (!await new TokensHandler().getToken(data.token))
-        //     return res.status(401).send('Unauthorized')
+        if (!await new TokensHandler().getToken(data.token))
+            return res.status(401).send('Unauthorized')
 
         if (data.userId.length != 18 || !data.tag.includes('#') || data.avatarUrl.startsWith('https://cdn.discordapp.com/') || data.guildId.length != 18 || data.content.length > 2000 || (data.filesUrl && data.filesUrl.length > 10))
             return res.status(400).send('Invalid data provided')

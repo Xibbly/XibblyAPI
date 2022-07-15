@@ -17,6 +17,7 @@ export default class GlobalchatHandler {
 
     public async hasAdd(guildID: string): Promise<boolean> {
         return !!(await models.get('globalchatAdd')?.findOne({guildID}))
+
     }
 
     public async getAdd(guildID: string): Promise<GlobalChatApiAdd> {

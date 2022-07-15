@@ -1,6 +1,7 @@
 import RouteType from '../../../types/website.type'
 import {GlobalChatApiVerify} from '../../../types/api/globalchat.type'
 import GlobalchatHandler from '../../../database/handlers/globalchat.handler'
+import SendDiscordWebhookUtil from '../../../utils/sendDiscordWebhook.util'
 
 export default {
 
@@ -21,15 +22,13 @@ export default {
         if (data.guildId.length != 18)
             return res.status(400).send('Invalid data provided')
 
-        if (await new GlobalchatHandler().hasAdd(data.guildId))
-            // @todo post webhook to logs channel
-
+        if (await new GlobalchatHandler().hasAdd(data.guildId)) {
             return res.send({
                 guildId: data.guildId,
                 support: process.env.SUPPORT_INVITE,
                 poweredBy: process.env.POWERED_BY
             })
-        else
+        } else
             return res.status(400).send('Error while verifying')
 
     }

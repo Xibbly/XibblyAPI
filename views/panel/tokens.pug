@@ -32,9 +32,8 @@ append content
         each token in tokens
             .card.bg-dark
                 .card-body
-                    h5.card-title
-                        | TOKEN: #{token.token}
-                    // @todo date formatter
+                    h5.card-title(onclick='navigator.clipboard.writeText(' + token.token + '); alert(Twój token został skopiowany do schowka)' title='Skopiuj!')
+                        | TOKEN: #{token.token.slice(0, 20)}...
                     p.card-text
                         | Stworzony: #{token.createdAt}
                         br

@@ -1,4 +1,4 @@
-import {EncryptJWT, jwtDecrypt, JWTPayload} from 'jose'
+import {EncryptJWT, jwtDecrypt} from 'jose'
 import TokenModelType from '../../types/models/token.type'
 import models from '../index.database'
 import DateUtil from '../../utils/date.util'
@@ -17,10 +17,10 @@ export default class TokensHandler {
             .encrypt(this.key)
     }
 
-    private async decryptToken(token: string): Promise<JWTPayload> {
+    private async decryptToken(token: string): Promise<Omit<TokenModelType, 'token'>> {
         return (await jwtDecrypt(token, this.key, {
             issuer: 'xibbly.tk'
-        })).payload
+        })).payload.data as Omit<TokenModelType, 'token'>
     }
 
     public async insert(userId: number, token: string): Promise<string> {
@@ -65,16 +65,18 @@ export default class TokensHandler {
         if (!tokens)
             return []
 
-        tokens?.map(async t => {
-            return await this.decryptToken(t.token)
-        })
+        const decryptedTokens: TokenModelType[] = []
 
-        console.log(tokens)
-        return tokens as TokenModelType[]
+        for (const token of tokens) {
+            decryptedTokens.push(await this.getToken(token.token))
+        }
+
+        return decryptedTokens
     }
 
     public async getToken(token: string): Promise<TokenModelType> {
         const decryptedToken = await this.decryptToken(token)
+
         return {
             userId: decryptedToken.userId as number,
             token,
