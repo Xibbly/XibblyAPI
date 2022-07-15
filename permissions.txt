@@ -10,8 +10,3 @@ view_tokens - view all tokens
 manage_tokens - manage all tokens
 
 premium - premium
-
-
-tokens:
-
-* - all permissions

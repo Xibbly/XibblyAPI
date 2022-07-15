@@ -1,6 +1,5 @@
 import {NextFunction, Request, Response} from 'express'
 import UserType, {PermissionsType as UserPermissionsType} from './models/user.type'
-import {PermissionsType as TokenPermissionsType} from './models/token.type'
 
 export interface RouteArguments {
     req: Request
@@ -11,7 +10,6 @@ export interface RouteArguments {
 export default interface RouteType {
     route: string
     permissions?: UserPermissionsType[]
-    tokenPermissions?: TokenPermissionsType[]
     disabled?: boolean
     mustLogin?: boolean
     mustDiscordConnected?: boolean
