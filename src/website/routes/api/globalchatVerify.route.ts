@@ -1,6 +1,7 @@
 import RouteType from '../../../types/website.type'
 import {GlobalChatApiVerifyPost} from '../../../types/api/globalchat.type'
 import GlobalchatHandler from '../../../database/handlers/globalchat.handler'
+import SendDiscordWebhookUtil from '../../../utils/sendDiscordWebhook.util'
 
 export default {
 
@@ -20,6 +21,8 @@ export default {
             return res.status(400).send('Invalid data provided')
 
         if (await new GlobalchatHandler().verify(data.guildId, data.moderatorId)) {
+            await new SendDiscordWebhookUtil().sendVerificatedAnnouncement(data.guildId)
+
             return res.send({
                 guildId: data.guildId,
                 support: process.env.SUPPORT_INVITE,

@@ -1,12 +1,12 @@
-import WebhookType from '../types/utils/webhook.type'
+import WebhookType, {WebhookGlobalChatType} from '../types/utils/webhook.type'
 import axios, {AxiosResponse} from 'axios'
 
 export default class SendDiscordWebhookUtil {
 
-    public async sendToPublicLogs(webhookData: WebhookType) {
+    public async sendToPublicLogs(webhookData: WebhookType): Promise<void> {
     }
 
-    public async sendToLogs(webhookData: WebhookType) {
+    public async sendToLogs(webhookData: WebhookType): Promise<void> {
     }
 
     public async sendVerificatedAnnouncement(guildID: string): Promise<void> {
@@ -19,7 +19,7 @@ export default class SendDiscordWebhookUtil {
             }]
         })
 
-        await this.send(process.env.VERIFICATION_WEBHOOK_URL as string, {
+        await this.send(process.env.PUBLIC_LOGS_WEBHOOK_URL as string, {
             embeds: [{
                 author: {
                     name: '🌐 | System weryfikacji czatu globalnego!'
@@ -43,7 +43,11 @@ export default class SendDiscordWebhookUtil {
         })
     }
 
-    public async sendToError(error: string) {
+    public async sendToError(error: string): Promise<void> {
+    }
+
+    public async sendToGlobalChat(webhookUrl: string, webhookData: WebhookGlobalChatType): Promise<AxiosResponse<any, any>> {
+        return await this.send(webhookUrl, webhookData)
     }
 
     private async send(webhookUrl: string, webhookData: WebhookType): Promise<AxiosResponse<any, any>> {

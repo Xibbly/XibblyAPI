@@ -1,4 +1,4 @@
-export interface embed {
+interface embed {
     title?: string
     type?: string
     description?: string
@@ -45,21 +45,21 @@ export interface embed {
     }[]
 }
 
-export interface allowed_mentions {
+interface allowed_mentions {
     parse?: ('roles' | 'users' | 'everyone')[]
     roles?: string[]
     users?: string[]
     repiled_users?: boolean
 }
 
-// export interface component {
+// interface component {
 //     type: 1 | 2 | 3 | 4
 //     components: {
 //
 //     }[]
 // }
 
-export interface attachment {
+interface attachment {
     id: string
     filename: string
     description?: string
@@ -87,8 +87,9 @@ export default interface WebhookType {
     thread_name?: string
 }
 
-export interface postWebhookType {
-    token: string
-    webhookUrl: string
-    data: WebhookType
+export interface WebhookGlobalChatType {
+    username: string
+    avatar_url: string
+    content: string
+    files: string[]
 }

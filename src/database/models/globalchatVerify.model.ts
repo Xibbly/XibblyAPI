@@ -34,6 +34,11 @@ export const data: DatabaseType = {
             required: true
         },
 
+        addDate: {
+            type: String,
+            required: true
+        },
+
         verifiedDate: {
             type: String,
             required: true

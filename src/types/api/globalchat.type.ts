@@ -22,6 +22,7 @@ export interface GlobalChatApiVerify {
     inviteUrl: string
     webhookUrl: string
     moderatorId: string
+    addDate: string
     verifiedDate: string
 }
 

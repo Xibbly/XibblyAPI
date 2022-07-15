@@ -1,13 +1,10 @@
 import models from '../index.database'
 import DateUtil from '../../utils/date.util'
-import {GlobalChatApiAdd} from '../../types/api/globalchat.type'
+import {GlobalChatApiAdd, GlobalChatApiVerify} from '../../types/api/globalchat.type'
 
 export default class GlobalchatHandler {
 
     public async insertAdd(token: string, guildId: string, inviteUrl: string, webhookUrl: string): Promise<boolean> {
-        console.log(await this.hasAdd(guildId))
-        console.log(await this.hasVerify(guildId))
-
         if (await this.hasAdd(guildId) || await this.hasVerify(guildId))
             return false
 
@@ -32,6 +29,11 @@ export default class GlobalchatHandler {
         return await models.get('globalchatAdd')?.findOne({guildId}) as GlobalChatApiAdd
     }
 
+    public async getVerify(guildId: string): Promise<GlobalChatApiVerify> {
+        return await models.get('globalchatVerify')?.findOne({guildId}) as GlobalChatApiVerify
+    }
+
+
     public async deleteAdd(guildId: string): Promise<boolean> {
         if (!await this.hasAdd(guildId))
             return false
@@ -51,6 +53,7 @@ export default class GlobalchatHandler {
             inviteUrl: getAdd.inviteUrl,
             webhookUrl: getAdd.webhookUrl,
             moderatorId,
+            addDate: getAdd.addDate,
             verifiedDate: new DateUtil().formatDate(new Date())
         }])
         await this.deleteAdd(guildId)
