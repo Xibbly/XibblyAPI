@@ -55,6 +55,10 @@ export default class TokensHandler {
         return newToken
     }
 
+    public async hasToken(token: string): Promise<boolean> {
+        return !!(await models.get('tokens')?.findOne({token}))
+    }
+
     public async delete(token: string): Promise<void> {
         await models.get('tokens')?.deleteOne({token})
     }
@@ -75,6 +79,9 @@ export default class TokensHandler {
     }
 
     public async getToken(token: string): Promise<TokenModelType> {
+        if (!await this.hasToken(token))
+            return false as any as TokenModelType
+
         const decryptedToken = await this.decryptToken(token)
 
         return {

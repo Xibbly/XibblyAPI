@@ -11,7 +11,7 @@ export const data: DatabaseType = {
             required: true
         },
 
-        guildID: {
+        guildId: {
             type: String,
             required: true,
             unique: true

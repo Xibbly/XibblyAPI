@@ -26,7 +26,7 @@ export default {
                 poweredBy: process.env.POWERED_BY
             })
         } else
-            return res.status(400).send('Error while verifying')
+            return res.status(404).send('Guild not found')
 
     }
 

@@ -9,6 +9,26 @@ export default class SendDiscordWebhookUtil {
     public async sendToLogs(webhookData: WebhookType) {
     }
 
+    public async sendVerificatedAnnouncement(guildID: string): Promise<void> {
+        await this.send(process.env.VERIFICATION_WEBHOOK_URL as string, {
+            embeds: [{
+                author: {
+                    name: '🌐 | System weryfikacji czatu globalnego!'
+                },
+                description: `Serwer o ID \`${guildID}\` został zweryfikowany!`,
+            }]
+        })
+
+        await this.send(process.env.VERIFICATION_WEBHOOK_URL as string, {
+            embeds: [{
+                author: {
+                    name: '🌐 | System weryfikacji czatu globalnego!'
+                },
+                description: `Serwer o ID \`${guildID}\` został zweryfikowany!`,
+            }]
+        })
+    }
+
     public async sendToVerification(guildID: string, inviteUrl: string): Promise<void> {
         const fixedInviteUrl = inviteUrl.startsWith('https://discord.gg/') ? inviteUrl : `https://${inviteUrl}`
 
