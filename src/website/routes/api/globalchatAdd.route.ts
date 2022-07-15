@@ -17,7 +17,7 @@ export default {
         if (!data.token || !data.guildId || !data.inviteUrl || !data.webhookUrl)
             return res.status(400).send('Missing data')
 
-        if (!await new TokensHandler().getToken(data.token))
+        if (await new TokensHandler().getToken(data.token))
             return res.status(401).send('Unauthorized')
 
         if (data.guildId.length != 18 || !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')) || !data.webhookUrl.startsWith('https://discord.com/api/webhooks/'))

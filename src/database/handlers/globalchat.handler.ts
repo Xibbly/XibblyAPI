@@ -58,4 +58,9 @@ export default class GlobalchatHandler {
         return true
     }
 
+    public async getAllWebhook(): Promise<string[]> {
+        const getAll = await models.get('globalchatVerify')?.find()
+        return getAll?.map(({webhookUrl}) => webhookUrl) as string[]
+    }
+
 }

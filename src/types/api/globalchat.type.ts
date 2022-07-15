@@ -2,10 +2,10 @@ export default interface GlobalChatApiType {
     token: string
     userId: string
     tag: string
-    avatarUrl: string
+    avatar_url: string
     guildId: string
     content: string
-    filesUrl: string[]
+    files: string[]
 }
 
 export interface GlobalChatApiAdd {
