@@ -10,7 +10,6 @@ export interface GlobalchatUserMutePostType {
     moderatorId: string
     reason: string
     expiriedAt?: string
-    permament: boolean
 }
 
 export interface GlobalchatUserMuteType {
