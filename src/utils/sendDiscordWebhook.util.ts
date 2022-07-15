@@ -18,7 +18,7 @@ export default class SendDiscordWebhookUtil {
                 author: {
                     name: '🌐 | System weryfikacji czatu globalnego!'
                 },
-                description: `ID serwera: ${guildID}\nLink do serwera: ${inviteUrl}`,
+                description: `ID serwera: \`${guildID}\`\nLink do serwera: ${fixedInviteUrl}`,
             }]
         })
     }
