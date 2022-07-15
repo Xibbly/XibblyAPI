@@ -29,7 +29,7 @@ export const data: DatabaseType = {
             unique: true
         },
 
-        moderatorID: {
+        moderatorId: {
             type: String,
             required: true
         },

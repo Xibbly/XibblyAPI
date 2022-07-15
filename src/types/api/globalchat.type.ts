@@ -24,3 +24,9 @@ export interface GlobalChatApiVerify {
     moderatorId: string
     verifiedDate: string
 }
+
+export interface GlobalChatApiVerifyPost {
+    token: string
+    guildId: string
+    moderatorId: string
+}
