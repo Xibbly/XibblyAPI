@@ -14,11 +14,11 @@ export default {
         if (!data.token || !data.guildId || !data.moderatorId)
             return res.status(400).send('Missing data')
 
-        if (data.token !== process.env.GLOBALCHAT_TOKEN)
-            return res.status(401).send('Unauthorized')
-
         if (data.guildId.length != 18 || data.moderatorId.length != 18)
-            return res.status(400).send('Invalid data provided')
+            return res.status(400).send({error: 'Invalid data provided'})
+
+        if (data.token !== process.env.GLOBALCHAT_TOKEN)
+            return res.status(401).send({error: 'Invalid token'})
 
         if (await new GlobalchatHandler().verify(data.guildId, data.moderatorId)) {
             await new SendDiscordWebhookUtil().sendVerificatedAnnouncement(data.guildId)

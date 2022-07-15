@@ -12,16 +12,16 @@ export default {
 
     async post({req, res}) {
 
-        const data: GlobalChatApiAdd = req.body
+        const data: Omit<GlobalChatApiAdd, 'addDate'> = req.body
 
         if (!data.token || !data.guildId || !data.inviteUrl || !data.webhookUrl)
-            return res.status(400).send('Missing data')
-
-        if (!await new TokensHandler().hasToken(data.token))
-            return res.status(401).send('Unauthorized')
+            return res.status(400).send({error: 'Missing parameters'})
 
         if (data.guildId.length != 18 || !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')) || !data.webhookUrl.startsWith('https://discord.com/api/webhooks/'))
-            return res.status(400).send('Invalid data provided')
+            return res.status(400).send({error: 'Invalid data provided'})
+
+        if (!await new TokensHandler().hasToken(data.token))
+            return res.status(401).send({error: 'Invalid token'})
 
         if (await new GlobalchatHandler().insertAdd(data.token, data.guildId, data.inviteUrl, data.webhookUrl)) {
 
@@ -34,7 +34,7 @@ export default {
                 poweredBy: process.env.POWERED_BY
             })
         } else
-            return res.status(400).send('Already added')
+            return res.status(400).send({error: 'Guild is already waiting for verification'})
 
     }
 
