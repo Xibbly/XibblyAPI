@@ -14,7 +14,7 @@ export default {
         if (!data.token || !data.guildId || !data.moderatorId)
             return res.status(400).send('Missing data')
 
-        if (data.guildId.length != 18 || data.moderatorId.length != 18)
+        if (!Number(data.guildId) || !Number(data.moderatorId) || data.guildId.length != 18 || data.moderatorId.length != 18)
             return res.status(400).send({error: 'Invalid data provided'})
 
         if (data.token !== process.env.GLOBALCHAT_TOKEN)
@@ -29,7 +29,7 @@ export default {
                 poweredBy: process.env.POWERED_BY
             })
         } else
-            return res.status(404).send('Guild not found')
+            return res.status(404).send({error: 'Guild is not found'})
 
     }
 

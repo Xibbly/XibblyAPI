@@ -17,7 +17,7 @@ export default {
         if (!data.token || !data.guildId || !data.inviteUrl || !data.webhookUrl)
             return res.status(400).send({error: 'Missing parameters'})
 
-        if (data.guildId.length != 18 || !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')) || !data.webhookUrl.startsWith('https://discord.com/api/webhooks/'))
+        if (!Number(data.guildId) || data.guildId.length != 18 || !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')) || !data.webhookUrl.startsWith('https://discord.com/api/webhooks/'))
             return res.status(400).send({error: 'Invalid data provided'})
 
         if (!await new TokensHandler().hasToken(data.token))
