@@ -58,4 +58,11 @@ export default class SendDiscordWebhookUtil {
         })
     }
 
+    public async check(webhookUrl: string): Promise<AxiosResponse<any, any>> {
+        return await axios.post(`${process.env.WEBHOOK_API_URL}check`, {
+            token: process.env.WEBHOOK_API_TOKEN,
+            webhookUrl
+        })
+    }
+
 }

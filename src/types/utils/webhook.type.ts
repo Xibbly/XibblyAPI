@@ -90,6 +90,6 @@ export default interface WebhookType {
 export interface WebhookGlobalChatType {
     username: string
     avatar_url: string
-    content: string
-    files: string[]
+    content?: string
+    files?: string[]
 }
