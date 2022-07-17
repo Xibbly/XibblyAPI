@@ -38,6 +38,15 @@ export default class GlobalchatUserHandler {
         return true
     }
 
+    public async unmute(userId: string): Promise<boolean> {
+        if (!await this.hasMute(userId))
+            return false
+
+        await models.get('globalchatMute')?.deleteOne({userId})
+
+        return true
+    }
+
     public async hasUser(userId: string): Promise<boolean> {
         return !!(await models.get('globalchatUser')?.findOne({userId}))
     }

@@ -20,3 +20,9 @@ export interface GlobalchatUserMuteType {
     expiriedAt?: number
     permament: boolean
 }
+
+export interface GlobalchatUserUnmuteType {
+    token: string
+    userId: string
+    moderatorId: string
+}

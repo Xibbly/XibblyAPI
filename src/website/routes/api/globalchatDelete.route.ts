@@ -20,6 +20,8 @@ export default {
             return res.status(401).send({error: 'Invalid token'})
 
         if (await new GlobalchatHandler().detete(data.guildId)) {
+            // @todo discord logs
+
             return res.send({
                 ...data,
                 support: process.env.SUPPORT_INVITE,

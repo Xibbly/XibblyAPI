@@ -23,6 +23,8 @@ export default {
             return res.status(401).send({error: 'Invalid token'})
 
         if (await new GlobalchatUserUtil().mute(data.userId, data.moderatorId, data.reason, (data.expiriedAt || false) as string)) {
+            // @todo discord logs
+
             const userMuteData = await new GlobalchatUserHandler().getMute(data.userId)
             res.send({
                 userId: data.userId,
