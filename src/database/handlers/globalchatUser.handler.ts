@@ -1,6 +1,6 @@
 import models from '../index.database'
 import GlobalchatUserType, {GlobalchatUserMuteType} from '../../types/api/globalchatUser.type'
-import DateUtil from '../../utils/date.util'
+import DateUtil from '../../utilities/date.util'
 
 export default class GlobalchatUserHandler {
 

@@ -1,7 +1,7 @@
 import {EncryptJWT, jwtDecrypt} from 'jose'
 import TokenModelType from '../../types/models/token.type'
 import models from '../index.database'
-import DateUtil from '../../utils/date.util'
+import DateUtil from '../../utilities/date.util'
 
 export default class TokensHandler {
 

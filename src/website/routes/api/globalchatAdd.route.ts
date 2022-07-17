@@ -2,7 +2,7 @@ import RouteType from '../../../types/website.type'
 import {GlobalChatApiAdd} from '../../../types/api/globalchat.type'
 import TokensHandler from '../../../database/handlers/tokens.handler'
 import GlobalchatHandler from '../../../database/handlers/globalchat.handler'
-import SendDiscordWebhookUtil from '../../../utils/sendDiscordWebhook.util'
+import SendDiscordWebhookUtil from '../../../utilities/sendDiscordWebhook.util'
 
 export default {
 

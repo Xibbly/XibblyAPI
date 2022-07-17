@@ -1,4 +1,4 @@
-import WebhookType, {WebhookGlobalChatType} from '../types/utils/webhook.type'
+import WebhookType, {WebhookGlobalChatType} from '../types/utilities/webhook.type'
 import axios, {AxiosResponse} from 'axios'
 
 export default class SendDiscordWebhookUtil {

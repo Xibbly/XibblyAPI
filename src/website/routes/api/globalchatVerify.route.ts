@@ -1,7 +1,7 @@
 import RouteType from '../../../types/website.type'
 import {GlobalChatApiVerifyPost} from '../../../types/api/globalchat.type'
 import GlobalchatHandler from '../../../database/handlers/globalchat.handler'
-import SendDiscordWebhookUtil from '../../../utils/sendDiscordWebhook.util'
+import SendDiscordWebhookUtil from '../../../utilities/sendDiscordWebhook.util'
 
 export default {
 

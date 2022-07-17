@@ -1,5 +1,5 @@
 import models from '../index.database'
-import DateUtil from '../../utils/date.util'
+import DateUtil from '../../utilities/date.util'
 import {GlobalChatApiAdd, GlobalChatApiVerify} from '../../types/api/globalchat.type'
 
 export default class GlobalchatHandler {

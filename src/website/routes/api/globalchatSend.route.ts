@@ -2,10 +2,10 @@ import RouteType from '../../../types/website.type'
 import GlobalChatApiType from '../../../types/api/globalchat.type'
 import TokensHandler from '../../../database/handlers/tokens.handler'
 import GlobalchatHandler from '../../../database/handlers/globalchat.handler'
-import SendDiscordWebhookUtil from '../../../utils/sendDiscordWebhook.util'
+import SendDiscordWebhookUtil from '../../../utilities/sendDiscordWebhook.util'
 import GlobalchatUserHandler from '../../../database/handlers/globalchatUser.handler'
-import StringUtil from '../../../utils/string.util'
-import GlobalchatUserUtil from '../../../utils/globalchatUser.util'
+import StringUtil from '../../../utilities/string.util'
+import GlobalchatUserUtil from '../../../utilities/globalchatUser.util'
 
 export default {
 
