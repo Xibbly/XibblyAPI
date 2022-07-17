@@ -7,7 +7,7 @@ export default {
     route: 'globalchat/user',
     mustDiscordConnected: true,
 
-    async get({req, res}) {
+    async post({req, res}) {
 
         const userId: string = req.body.userId
         const token: string = req.body.token

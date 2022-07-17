@@ -46,8 +46,6 @@ export default {
 
             if (webhookData && webhookData.id && webhookData.guild_id != data.guildId) {
 
-                console.log(2)
-
                 const response = await new SendDiscordWebhookUtil().sendToGlobalChat(webhook, {
                     username: await new GlobalchatUserUtil().generateUsername(data.tag, data.userId),
                     avatar_url: data.avatar_url,

@@ -49,8 +49,14 @@ export default class GlobalchatHandler {
         const getAdd = await this.getAdd(guildId)
 
         await models.get('globalchatVerify')?.insertMany([{
-            ...getAdd,
+            token: getAdd.token,
+            guildId,
+            channelId: getAdd.channelId,
+            inviteUrl: getAdd.inviteUrl,
+            webhookUrl: getAdd.webhookUrl,
             moderatorId,
+            addDate: getAdd.addDate,
+            verifiedDate: new DateUtil().formatDate(new Date())
         }])
         await this.deleteAdd(guildId)
 
