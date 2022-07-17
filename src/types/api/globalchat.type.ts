@@ -34,3 +34,10 @@ export interface GlobalChatApiVerifyPost {
     guildId: string
     moderatorId: string
 }
+
+export interface GlobalChatApiDelete {
+    token: string
+    guildId: string
+    moderatorId: string
+    reason: string
+}

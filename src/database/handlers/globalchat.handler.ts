@@ -42,6 +42,18 @@ export default class GlobalchatHandler {
         return true
     }
 
+    public async deleteVerify(guildId: string): Promise<boolean> {
+        if (!await this.getVerify(guildId))
+            return false
+
+        await models.get('globalchatVerify')?.deleteOne({guildId})
+        return true
+    }
+
+    public async detete(guildId: string): Promise<boolean> {
+        return await this.deleteAdd(guildId) || await this.deleteVerify(guildId) || false
+    }
+
     public async verify(guildId: string, moderatorId: string): Promise<boolean> {
         if (!await this.hasAdd(guildId))
             return false

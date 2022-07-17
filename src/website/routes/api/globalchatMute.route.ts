@@ -3,6 +3,7 @@ import GlobalchatUserUtil from '../../../utilities/globalchatUser.util'
 import {GlobalchatUserMutePostType} from '../../../types/api/globalchatUser.type'
 import GlobalchatUserHandler from '../../../database/handlers/globalchatUser.handler'
 import DateUtil from '../../../utilities/date.util'
+import {errors} from "jose";
 
 export default {
 
@@ -13,7 +14,7 @@ export default {
         const data: GlobalchatUserMutePostType = req.body
 
         if (!data.token || !data.userId || !data.moderatorId || !data.reason)
-            return res.status(400).send('Missing data')
+            return res.status(400).send({error: 'Missing data'})
 
         if (!Number(data.userId) || !Number(data.moderatorId) || data.userId.length != 18 || data.moderatorId.length != 18)
             return res.status(400).send({error: 'Invalid data provided'})
