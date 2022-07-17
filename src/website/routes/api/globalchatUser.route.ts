@@ -4,11 +4,11 @@ import GlobalchatUserUtil from "../../../utils/globalchatUser.util";
 
 export default {
 
-    route: 'globalchat/getuser',
+    route: 'globalchat/user',
     mustDiscordConnected: true,
 
 
-    async post({req, res}) {
+    async get({req, res}) {
 
         const userId: string = req.body.userId
         const token: string = req.body.token
