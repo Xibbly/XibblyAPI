@@ -1,12 +1,11 @@
 import RouteType from '../../../types/website.type'
 import TokensHandler from '../../../database/handlers/tokens.handler'
-import GlobalchatUserUtil from "../../../utils/globalchatUser.util";
+import GlobalchatUserUtil from '../../../utils/globalchatUser.util'
 
 export default {
 
     route: 'globalchat/user',
     mustDiscordConnected: true,
-
 
     async get({req, res}) {
 

@@ -1,6 +1,7 @@
 export default interface GlobalChatApiType {
     token: string
     userId: string
+    channelId: string
     tag: string
     avatar_url: string
     guildId: string
@@ -11,6 +12,7 @@ export default interface GlobalChatApiType {
 export interface GlobalChatApiAdd {
     token: string
     guildId: string
+    channelId: string
     inviteUrl: string
     webhookUrl: string
     addDate: string
@@ -19,6 +21,7 @@ export interface GlobalChatApiAdd {
 export interface GlobalChatApiVerify {
     token: string
     guildId: string
+    channelId: string
     inviteUrl: string
     webhookUrl: string
     moderatorId: string

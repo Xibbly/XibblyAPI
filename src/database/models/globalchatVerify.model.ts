@@ -17,6 +17,12 @@ export const data: DatabaseType = {
             unique: true
         },
 
+        channelId: {
+            type: String,
+            required: true,
+            unique: true
+        },
+
         inviteUrl: {
             type: String,
             required: true,

@@ -12,14 +12,13 @@ export default {
     route: 'globalchat/send',
     mustDiscordConnected: true,
 
-
     async post({req, res}) {
 
         const data: GlobalChatApiType = req.body
-        if (!data.token || !data.userId || !data.tag || !data.avatar_url || !data.guildId || (!data.content && !(data.files && data.files[0])))
+        if (!data.token || !data.userId || !data.tag || !data.avatar_url || !data.guildId || !data.channelId || (!data.content && !(data.files && data.files[0])))
             return res.status(400).send({error: 'Missing parameters'})
 
-        if (!Number(data.guildId) || !Number(data.userId) || data.userId.length != 18 || !data.tag.includes('#') || !data.avatar_url.startsWith('https://cdn.discordapp.com/') || data.guildId.length != 18 || (data.content && data.content != '' && data.content.length > 2000) || (data.files && data.files[11]))
+        if (!Number(data.guildId) || !Number(data.userId) || data.userId.length != 18 || !data.tag.includes('#') || !data.avatar_url.startsWith('https://cdn.discordapp.com/') || !Number(data.guildId) || data.guildId.length != 18 || !Number(data.channelId) || data.channelId.length != 18 || (data.content && data.content != '' && data.content.length > 2000) || (data.files && data.files[11]))
             return res.status(400).send({error: 'Invalid data provided'})
 
         if (!await new TokensHandler().hasToken(data.token))
@@ -27,6 +26,9 @@ export default {
 
         if (await new GlobalchatUserHandler().hasMute(data.userId))
             return res.status(403).send({error: 'User is muted'})
+
+        if (!await new GlobalchatHandler().hasVerify(data.guildId))
+            return res.status(403).send({error: 'Guild is not verified'})
 
         if (data.content == '')
             delete data.content

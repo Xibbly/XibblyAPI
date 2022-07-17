@@ -1,6 +1,6 @@
 import GlobalchatUserHandler from '../database/handlers/globalchatUser.handler'
 import DateUtil from './date.util'
-import GlobalchatUserType from "../types/api/globalchatUser.type";
+import GlobalchatUserType from '../types/api/globalchatUser.type'
 
 export default class {
 

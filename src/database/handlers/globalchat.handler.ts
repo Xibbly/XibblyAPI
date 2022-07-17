@@ -4,12 +4,12 @@ import {GlobalChatApiAdd, GlobalChatApiVerify} from '../../types/api/globalchat.
 
 export default class GlobalchatHandler {
 
-    public async insertAdd(token: string, guildId: string, inviteUrl: string, webhookUrl: string): Promise<boolean> {
-        if (await this.hasAdd(guildId) || await this.hasVerify(guildId))
+    public async insertAdd(data: Omit<GlobalChatApiAdd, 'addDate'>): Promise<boolean> {
+        if (await this.hasAdd(data.guildId) || await this.hasVerify(data.guildId))
             return false
 
         await models.get('globalchatAdd')?.insertMany([{
-            token, guildId, inviteUrl, webhookUrl,
+            ...data,
             addDate: new DateUtil().formatDate(new Date())
         }])
         return true
@@ -47,14 +47,10 @@ export default class GlobalchatHandler {
             return false
 
         const getAdd = await this.getAdd(guildId)
+
         await models.get('globalchatVerify')?.insertMany([{
-            token: getAdd.token,
-            guildId,
-            inviteUrl: getAdd.inviteUrl,
-            webhookUrl: getAdd.webhookUrl,
+            ...getAdd,
             moderatorId,
-            addDate: getAdd.addDate,
-            verifiedDate: new DateUtil().formatDate(new Date())
         }])
         await this.deleteAdd(guildId)
 

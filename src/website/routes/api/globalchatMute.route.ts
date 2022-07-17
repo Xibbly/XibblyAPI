@@ -1,8 +1,8 @@
 import RouteType from '../../../types/website.type'
 import GlobalchatUserUtil from '../../../utils/globalchatUser.util'
 import {GlobalchatUserMutePostType} from '../../../types/api/globalchatUser.type'
-import GlobalchatUserHandler from "../../../database/handlers/globalchatUser.handler";
-import DateUtil from "../../../utils/date.util";
+import GlobalchatUserHandler from '../../../database/handlers/globalchatUser.handler'
+import DateUtil from '../../../utils/date.util'
 
 export default {
 
