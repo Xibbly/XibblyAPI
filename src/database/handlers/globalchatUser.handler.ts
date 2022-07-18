@@ -56,11 +56,15 @@ export default class GlobalchatUserHandler {
     }
 
     public async getUser(userId: string): Promise<GlobalchatUserType> {
-        return (await models.get('globalchatUser')?.findOne({userId}) as GlobalchatUserType)
+        return await models.get('globalchatUser')?.findOne({userId}) as GlobalchatUserType
     }
 
     public async getMute(userId: string): Promise<GlobalchatUserMuteType> {
-        return (await models.get('globalchatMute')?.findOne({userId}) as GlobalchatUserMuteType)
+        return await models.get('globalchatMute')?.findOne({userId}) as GlobalchatUserMuteType
+    }
+
+    public async getAllMutes(): Promise<GlobalchatUserMuteType[]> {
+        return await models.get('globalchatMute')?.find() as GlobalchatUserMuteType[]
     }
 
 }
