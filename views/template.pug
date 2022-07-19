@@ -14,20 +14,22 @@ html(lang='pl')
 
     body
 
-    #cookies
-        .data
-            span
-                | Ta strona używa plików cookie. Korzystając z tej strony, zgadzasz się na używanie przez nas plików cookie.
-            br
-            button.btn.btn-success.btn-sm(type='button' onclick='new Cookies().close()') Wyrażam zgodę
-            a.btn.btn-primary.btn-sm(href='/cookies' role='button') Czytaj więcej
+        #navbar
+
+        #cookies
+            .data
+                span
+                    | Ta strona używa plików cookie. Korzystając z tej strony, zgadzasz się na używanie przez nas plików cookie.
+                br
+                button.btn.btn-success.btn-sm(type='button' onclick='new Cookies().close()') Wyrażam zgodę
+                a.btn.btn-primary.btn-sm(href='/cookies' role='button') Czytaj więcej
 
 
-    .title
-        block title
+        .title
+            block title
 
-    .container.content
-        block content
+        .container.content
+            block content
 
-    script(src='/js/cookies.js')
-    block js
+        script(src='/js/cookies.js')
+        block js

@@ -22,7 +22,7 @@ export interface RouteOutput {
         data?: {
 
             [x: string]: any
-        
+
         }
 
     }
@@ -35,6 +35,14 @@ interface Express {
     res: Response
     next: NextFunction
 
+}
+
+declare module 'express-session' {
+    interface SessionData {
+        user: {}
+
+        [x: string]: any
+    }
 }
 
 export default abstract class Route {
