@@ -1,6 +1,7 @@
 import ex from 'express'
 import es from 'express-session'
 import LogsUtil from '../Utils/Logs.util'
+import HandlerWebsite from './Handler.website'
 
 export default class IndexWebsite {
 
@@ -10,6 +11,7 @@ export default class IndexWebsite {
     constructor() {
 
         this.setup()
+        new HandlerWebsite(this.app)
         this[404]()
         this.listen()
 

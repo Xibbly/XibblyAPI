@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import DateUtil from "./Date.util";
+import DateUtil from './Date.util'
 
 export default class LogsUtil {
 
