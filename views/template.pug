@@ -8,6 +8,7 @@ html(lang='pl')
         title XibblyAPI
 
         link(rel='stylesheet' href='/css/style.css')
+        link(rel='stylesheet' href='/css/navbar.css')
         link(rel='stylesheet' href='/css/cookies.css')
 
     block head
@@ -15,6 +16,24 @@ html(lang='pl')
     body
 
         #navbar
+            input(type='checkbox', id='navbar-checkbox')
+            label.check-navbar-checkbox(for='navbar-checkbox')
+                .fas.fa-bars
+
+
+            span.logo
+                a(href='/')
+                    | XibblyAPI
+            ul
+                li
+                    a(href='/')
+                        | Strona główna
+
+        br
+        br
+        br
+        br
+        br
 
         #cookies
             .data
@@ -32,4 +51,5 @@ html(lang='pl')
             block content
 
         script(src='/js/cookies.js')
+        script(src="https://kit.fontawesome.com/6465a42fcc.js" crossorigin="anonymous")
         block js
