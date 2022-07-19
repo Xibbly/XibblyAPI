@@ -18,5 +18,52 @@ html, body {
 }
 
 .blur {
+
     filter: blur(10px);
+
+}
+
+button {
+
+    border: none;
+    padding: 6px 12px;
+    margin: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+
+    background: gray;
+
+    transition: .5s;
+
+    a {
+
+        color: white;
+
+    }
+
+}
+
+.green {
+
+    background: #198754;
+
+}
+
+.green:hover {
+
+    background: #157347;
+
+}
+
+.blue {
+
+        background: #0d6efd;;
+
+}
+
+.blue:hover {
+
+    background: #0b5ed7;
+
 }
