@@ -35,20 +35,21 @@ html(lang='pl')
         br
         br
 
+        #title
+            block title
+
+        #content
+            block content
+
         #cookies
             .data
                 span
                     | Ta strona używa plików cookie. Korzystając z tej strony, zgadzasz się na używanie przez nas plików cookie.
                 br
-                button.btn.btn-success.btn-sm(type='button' onclick='new Cookies().close()') Wyrażam zgodę
-                a.btn.btn-primary.btn-sm(href='/cookies' role='button') Czytaj więcej
-
-
-        .title
-            block title
-
-        .container.content
-            block content
+                button(onclick='new Cookies().close()') Wyrażam zgodę
+                br
+                button
+                    a(href='/cookies') Czytaj więcej
 
         script(src='/js/cookies.js')
         script(src="https://kit.fontawesome.com/6465a42fcc.js" crossorigin="anonymous")
