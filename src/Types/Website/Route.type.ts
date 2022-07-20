@@ -48,12 +48,13 @@ declare module 'express-session' {
 export default abstract class Route {
 
     route: string = '/'
-    type: 'get' | 'post' = 'get'
-    permissions?: PermissionsType[]
-    mustLogin?: boolean
-    mustDiscordConnected?: boolean
-
-    abstract run(data?: Express): Promise<RouteOutput>
+    methods: {
+        method: 'get' | 'post'
+        permissions?: PermissionsType[]
+        mustLogin?: boolean
+        mustDiscordConnected?: boolean
+        run(data?: Express): Promise<RouteOutput>
+    }[] = []
 
 }
 

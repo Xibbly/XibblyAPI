@@ -7,16 +7,17 @@ export default class HandlerWebsite {
 
     constructor(private app: Application) {
 
-        const table: (Omit<Route, 'run'> & { filePath: string })[] = []
+        const table: (Omit<Route, 'methods'> & { filePath: string, methods: string })[] = []
 
         readdirSync(`${__dirname}/Routes`).filter(fileName => !fileName.startsWith('--')).forEach((category: string) => {
 
             if (category.endsWith('.js')) {
 
-                const route: Route = new (require(`${__dirname}/Routes/${category}`).default)
+                let route: Route = new (require(`${__dirname}/Routes/${category}`).default)
                 if (this.setupRoute(route))
                     table.push({
-                        ...route,
+                        route: route.route,
+                        methods: route.methods.map(method => method.method).join(', '),
                         filePath: `/${category}`
                     })
 
@@ -27,7 +28,8 @@ export default class HandlerWebsite {
                     const route: Route = new (require(`${__dirname}/Routes/${category}/${file}`).default)
                     if (this.setupRoute(route))
                         table.push({
-                            ...route,
+                            route: route.route,
+                            methods: route.methods.map(method => method.method).join(', '),
                             filePath: `/${category}/${file}`
                         })
 
@@ -41,34 +43,44 @@ export default class HandlerWebsite {
 
     }
 
-    private setupRoute(route: Route): boolean {
+    private setupRoute(routes: Route): boolean {
 
         try {
 
-            this.app[route.type](route.route, async (req: Request, res: Response, next: NextFunction) => {
+            routes.methods.forEach(route => {
 
-                const output: RouteOutput = await route.run({req, res, next})
+                this.app[route.method](routes.route, async (req: Request, res: Response, next: NextFunction) => {
 
-                if (output.success) {
+                    const output: RouteOutput = await route.run({req, res, next})
 
-                    res.send(output.success)
+                    if (output.success) {
 
-                } else if (output.error) {
+                        res.send(output.success)
 
-                    res.status(output.error.code).send(output.error)
+                    } else if (output.error) {
 
-                } else if (output.render) {
+                        res.status(output.error.code).send(output.error)
 
-                    res.render(output.render.file, output.render.data)
+                    } else if (output.render) {
 
-                }
+                        res.render(output.render.file, {
+
+                            ...output.render.data,
+                            user: req.session.user,
+
+                        })
+
+                    }
+
+                })
 
             })
+
             return true
 
         } catch (e) {
 
-            new LogsUtil().sendLog('red', `Error while setting up route ${route.route}.\n${e}`)
+            new LogsUtil().sendLog('red', `Error while setting up route ${routes.route}.\n${e}`)
             return false
 
         }

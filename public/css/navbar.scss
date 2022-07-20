@@ -1,14 +1,17 @@
+@import "_variables";
+
 #navbar {
 
     background: #313131;
     width: 100%;
-    height: 80px;
+    height: $navbar-height;
     position: fixed;
 
     .logo {
 
         font-size: 20px;
-        line-height: 80px;
+        float: left;
+        line-height: $navbar-height;
         padding: 0 25px;
         font-weight: bold;
 
@@ -21,17 +24,18 @@
 
     }
 
-    ul {
+    ul.left {
+        float: left;
+    }
 
+    ul.right {
         float: right;
-        margin-right: 20px;
-
     }
 
     li {
 
         display: inline-block;
-        line-height: 80px;
+        line-height: $navbar-height;
         margin: 0 5px;
 
     }
@@ -61,7 +65,7 @@
     .check-navbar-checkbox {
         font-size: 30px;
         float: right;
-        line-height: 80px;
+        line-height: $navbar-height;
         margin-right: 40px;
         cursor: pointer;
         display: none;
@@ -69,16 +73,6 @@
 
     #navbar-checkbox {
         display: none;
-    }
-
-    @media (max-width: 952px) {
-
-        li a {
-
-            font-size: 16px;
-
-        }
-
     }
 
     @media (max-width: 858px) {
@@ -89,7 +83,7 @@
 
         }
 
-        ul {
+        .navbar-elements {
 
             position: fixed;
             width: 100%;
@@ -97,26 +91,28 @@
             background: #212121;
             top: 80px;
             left: -100%;
-            text-align: center;
             transition: all .5s;
+
+        }
+
+        ul, li {
+
+            width: 100%;
+            text-align: center;
 
         }
 
         li {
 
+            text-align: center;
             display: block;
-            margin: 50px 0;
-            line-height: 30px;
+            line-height: calc(#{$navbar-height} / 2.5);
+            margin-top: calc(#{$navbar-height} / 2.5);
+
 
         }
 
-        li a {
-
-            font-size: 20px;
-
-        }
-
-        #navbar-checkbox:checked ~ ul {
+        #navbar-checkbox:checked ~ .navbar-elements {
 
             left: 0;
 

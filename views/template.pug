@@ -20,26 +20,32 @@ html(lang='pl')
             label.check-navbar-checkbox(for='navbar-checkbox')
                 .fas.fa-bars
 
-
             span.logo
                 a(href='/')
                     | XibblyAPI
-            ul
-                li
-                    a(href='/')
-                        | Strona główna
+
+            .navbar-elements
+                ul.left
+                    li
+                        a(href='/')
+                            | Strona główna
+                    li
+                        a(href='https://docs.xibbly.tk')
+                            | Dokumentacja
+
+                ul.right
+                    li
+                        a(href='/user/login')
+                            | Zaloguj się
 
         br
-        br
-        br
-        br
-        br
 
-        #title
-            block title
+        #container
+            #title
+                block title
 
-        #content
-            block content
+            #content
+                block content
 
         #cookies
             .data

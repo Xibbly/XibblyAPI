@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "_variables";
 
 * {
     text-decoration: none;
@@ -14,6 +15,14 @@ html, body {
     background-color: #212121;
     font-family: 'Montserrat', sans-serif;
     color: white;
+
+}
+
+#container {
+
+    margin-top: $navbar-height;
+    margin-left: 20px;
+    margin-right: 20px;
 
 }
 

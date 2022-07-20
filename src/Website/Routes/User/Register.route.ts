@@ -5,7 +5,7 @@ export default class extends RouteType {
     constructor() {
         super();
 
-        this.route = '/user/login';
+        this.route = '/user/register';
 
         this.methods.push({
 
@@ -16,7 +16,7 @@ export default class extends RouteType {
 
                     render: {
 
-                        file: 'user/login'
+                        file: 'register'
 
                     }
 

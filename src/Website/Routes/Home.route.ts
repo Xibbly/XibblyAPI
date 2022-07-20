@@ -7,19 +7,24 @@ export default class extends RouteType {
 
         this.route = '/';
 
-    }
+        this.methods.push({
 
-    async run(): Promise<RouteOutput> {
+            method: 'get',
+            async run(): Promise<RouteOutput> {
 
-        return {
+                return {
 
-            render: {
+                    render: {
 
-                file: 'home'
+                        file: 'home'
+
+                    }
+
+                }
 
             }
 
-        }
+        })
 
     }
 
