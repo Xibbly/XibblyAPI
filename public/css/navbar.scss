@@ -75,6 +75,68 @@
         display: none;
     }
 
+    .dropdown {
+
+        .dropdown-elements {
+
+            display: none;
+            position: absolute;
+            right: 0;
+            z-index: 1;
+
+        }
+
+        .dropdown-element {
+
+            text-align: center;
+            width: 100%;
+
+            .red {
+
+                color: #ff0000;
+                font-weight: bolder;
+                transition: .5s;
+
+            }
+
+            .red:hover {
+
+                color: #ff3333;
+
+            }
+
+        }
+
+        @media (min-width: 859px) {
+
+            .dropdown-elements {
+
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            }
+
+        }
+
+    }
+
+    .dropdown:hover {
+
+        .dropdown-elements {
+
+            display: block;
+
+        }
+
+    }
+
+    .avatar {
+
+        width: 30px;
+        border-radius: 50%;
+        vertical-align: middle;
+
+    }
+
     @media (max-width: 858px) {
 
         .check-navbar-checkbox {

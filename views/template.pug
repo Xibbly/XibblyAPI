@@ -39,10 +39,19 @@ html(lang='pl')
                             a(href='/user/loginredirect')
                                 | Zaloguj się
                     else
-                        li
-                            a(href='/panel')
-                                | Panel
-
+                        li.dropdown
+                            span.dropdown-title
+                                if oauthUser.avatar
+                                    img.avatar(src='https://cdn.discordapp.com/avatars/' + oauthUser.id + '/' + oauthUser.avatar + '.webp')
+                                | &nbsp;#{oauthUser.username}&nbsp;
+                                .fas.fa-caret-down
+                            ul.dropdown-elements
+                                li.dropdown-element
+                                    a(href='/panel')
+                                        | Panel
+                                li.dropdown-element
+                                    a.red(href='/user/logout')
+                                        | Wyloguj się
         br
 
         #container
