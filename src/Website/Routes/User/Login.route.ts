@@ -61,8 +61,6 @@ export default class extends RouteType {
 
                 } catch (e) {
 
-                    console.log(e)
-
                     return {
 
                         redirect: `/user/loginredirect`

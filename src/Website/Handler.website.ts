@@ -69,8 +69,8 @@ export default class HandlerWebsite {
                             res.render(output.render.file, {
 
                                 ...output.render.data,
-                                user: req.session.oauthUser,
-
+                                oauthUser: req.session.oauthUser,
+                                user: req.session.user
                             })
 
                         } else if (output.redirect) {

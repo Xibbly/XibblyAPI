@@ -34,7 +34,7 @@ html(lang='pl')
                             | Dokumentacja
 
                 ul.right
-                    if !user || !user.username
+                    if !oauthUser || !oauthUser.username || !user || !user.userId
                         li
                             a(href='/user/loginredirect')
                                 | Zaloguj się
