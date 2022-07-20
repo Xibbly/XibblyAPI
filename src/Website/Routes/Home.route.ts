@@ -3,9 +3,9 @@ import RouteType, {RouteOutput} from '../../Types/Website/Route.type'
 export default class extends RouteType {
 
     constructor() {
-        super();
+        super()
 
-        this.route = '/';
+        this.route = '/'
 
         this.methods.push({
 

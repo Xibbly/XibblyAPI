@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from 'express'
-import {PermissionsType} from '../Database/User.type'
+import {Permissions} from '../Database/User.type'
 
 export interface RouteOutput {
 
@@ -25,35 +25,60 @@ export interface RouteOutput {
 
         }
 
-    }
+    },
 
-}
-
-interface Express {
-
-    req: Request
-    res: Response
-    next: NextFunction
+    redirect?: string
 
 }
 
 declare module 'express-session' {
+
     interface SessionData {
-        user: {}
+
+        oauthToken: {
+
+            access_token: string
+            expires_in: number
+            refresh_token: string
+            scope: string
+            token_type: string
+
+        }
+
+        oauthUser: {
+
+            id: string
+            username: string
+            discriminator: string
+            avatar?: string
+            bot?: boolean
+            system?: boolean
+            mfa_enabled?: boolean
+            banner?: string
+            accent_color?: number
+            locale?: string
+            flags?: number
+            premium_type?: number
+            public_flags?: number
+
+        }
 
         [x: string]: any
+
     }
+
 }
 
 export default abstract class Route {
 
     route: string = '/'
     methods: {
+
         method: 'get' | 'post'
-        permissions?: PermissionsType[]
-        mustLogin?: boolean
-        mustDiscordConnected?: boolean
-        run(data?: Express): Promise<RouteOutput>
+        permissions?: Permissions[]
+        mustLogged?: boolean
+        run(req: Request, res: Response, next: NextFunction): Promise<RouteOutput>
+
     }[] = []
 
 }

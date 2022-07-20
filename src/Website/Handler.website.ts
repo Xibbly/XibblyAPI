@@ -1,7 +1,7 @@
 import {readdirSync} from 'fs'
 import {Application, NextFunction, Request, Response} from 'express'
 import Route, {RouteOutput} from '../Types/Website/Route.type'
-import LogsUtil from "../Utils/Logs.util";
+import LogsUtil from '../Utils/Logs.util'
 
 export default class HandlerWebsite {
 
@@ -51,7 +51,10 @@ export default class HandlerWebsite {
 
                 this.app[route.method](routes.route, async (req: Request, res: Response, next: NextFunction) => {
 
-                    const output: RouteOutput = await route.run({req, res, next})
+                    if (route.mustLogged && !req.session.oauthUser)
+                        return res.redirect('/login')
+
+                    const output: RouteOutput = await route.run(req, res, next)
 
                     if (output.success) {
 
@@ -66,9 +69,13 @@ export default class HandlerWebsite {
                         res.render(output.render.file, {
 
                             ...output.render.data,
-                            user: req.session.user,
+                            user: req.session.oauthUser,
 
                         })
+
+                    } else if (output.redirect) {
+
+                        res.redirect(output.redirect)
 
                     }
 

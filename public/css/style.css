@@ -11,12 +11,20 @@ html, body {
   background-color: #212121;
   font-family: "Montserrat", sans-serif;
   color: white;
+  font-size: 17px;
 }
 
 #container {
   margin-top: 60px;
   margin-left: 20px;
   margin-right: 20px;
+}
+
+#title {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 .blur {
@@ -30,11 +38,15 @@ button {
   border-radius: 4px;
   cursor: pointer;
   color: white;
-  background: gray;
+  background: #808080;
   transition: 0.5s;
 }
 button a {
   color: white;
+}
+
+button:hover {
+  background: #707070;
 }
 
 .green {
@@ -51,6 +63,15 @@ button a {
 
 .blue:hover {
   background: #0b5ed7;
+}
+
+a {
+  color: blue;
+  transition: 0.5s;
+}
+
+a:hover {
+  color: #8080ff;
 }
 
 /*# sourceMappingURL=style.css.map */

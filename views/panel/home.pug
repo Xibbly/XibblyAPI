@@ -6,11 +6,11 @@ append title
 
 append content
     center
-        | #{user.name}
+        | #{user.username}
     br
     br
 
-    if user.permissions.includes('*') || user.permissions.includes('admin_panel')
+    //if user.permissions.includes('*') || user.permissions.includes('admin_panel')
         a(href='/adminpanel') Panel admina
         br
 

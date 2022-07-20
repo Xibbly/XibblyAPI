@@ -11,7 +11,7 @@ html(lang='pl')
         link(rel='stylesheet' href='/css/navbar.css')
         link(rel='stylesheet' href='/css/cookies.css')
 
-    block head
+        block head
 
     body
 
@@ -34,9 +34,14 @@ html(lang='pl')
                             | Dokumentacja
 
                 ul.right
-                    li
-                        a(href='/user/login')
-                            | Zaloguj się
+                    if !user || !user.username
+                        li
+                            a(href='/user/loginredirect')
+                                | Zaloguj się
+                    else
+                        li
+                            a(href='/panel')
+                                | Panel
 
         br
 
