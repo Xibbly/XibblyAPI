@@ -1,6 +1,8 @@
 import axios from 'axios'
 import RouteType, {RouteOutput} from '../../../Types/Website/Route.type'
 import {NextFunction, Request, Response} from 'express'
+import UserHandler from '../../../Database/Handlers/User.handler'
+import LogsUtil from "../../../Utils/Logs.util";
 
 export default class extends RouteType {
 
@@ -36,7 +38,20 @@ export default class extends RouteType {
                         }
                     })).data
 
-                    // TODO: save to database, if is not exist, send discord embed logs
+                    const ip = req.header('x-forwarded-for') || '127.0.0.1'
+                    if (!await new UserHandler().get(req.session.oauthUser?.id as string)) {
+                        await new LogsUtil().sendDiscord('public', {
+                            embeds: [{
+                                title: '👮‍♂️ | Nowy użytkownik',
+                                description: `<@${req.session.oauthUser?.id}> zalogował się po raz pierwszy!`,
+                                color: '#00ff00'
+                            }]
+                        })
+
+                        await new UserHandler().insert(req.session.oauthUser?.id as string, ip)
+                    }
+
+                    req.session.user = await new UserHandler().get(req.session.oauthUser?.id as string)
 
                     return {
 
@@ -45,6 +60,8 @@ export default class extends RouteType {
                     }
 
                 } catch (e) {
+
+                    console.log(e)
 
                     return {
 

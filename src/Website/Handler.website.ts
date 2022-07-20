@@ -51,41 +51,43 @@ export default class HandlerWebsite {
 
                 this.app[route.method](routes.route, async (req: Request, res: Response, next: NextFunction) => {
 
-                    if (route.mustLogged && !req.session.oauthUser)
-                        return res.redirect('/login')
+                        if (route.mustLogged && (!req.session.oauthUser || !req.session.user))
+                            return res.redirect('/login')
 
-                    const output: RouteOutput = await route.run(req, res, next)
+                        const output: RouteOutput = await route.run(req, res, next)
 
-                    if (output.success) {
+                        if (output.success) {
 
-                        res.send(output.success)
+                            res.send(output.success)
 
-                    } else if (output.error) {
+                        } else if (output.error) {
 
-                        res.status(output.error.code).send(output.error)
+                            res.status(output.error.code).send(output.error)
 
-                    } else if (output.render) {
+                        } else if (output.render) {
 
-                        res.render(output.render.file, {
+                            res.render(output.render.file, {
 
-                            ...output.render.data,
-                            user: req.session.oauthUser,
+                                ...output.render.data,
+                                user: req.session.oauthUser,
 
-                        })
+                            })
 
-                    } else if (output.redirect) {
+                        } else if (output.redirect) {
 
-                        res.redirect(output.redirect)
+                            res.redirect(output.redirect)
+
+                        }
 
                     }
-
-                })
+                )
 
             })
 
             return true
 
-        } catch (e) {
+        } catch
+            (e) {
 
             new LogsUtil().sendLog('red', `Error while setting up route ${routes.route}.\n${e}`)
             return false

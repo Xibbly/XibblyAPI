@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from 'express'
-import {Permissions} from '../Database/User.type'
+import UserType, {Permissions} from '../Database/User.type'
 
 export interface RouteOutput {
 
@@ -62,6 +62,8 @@ declare module 'express-session' {
             public_flags?: number
 
         }
+
+        user: UserType
 
         [x: string]: any
 
