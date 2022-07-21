@@ -1,6 +1,7 @@
 extends ../template
 
 append head
+    link(rel='stylesheet', href='/css/panel.css')
 
 append title
     | Panel - zarządzanie tokenami
@@ -9,19 +10,16 @@ append title
 append content
     if user.permissions.includes('*') || user.permissions.includes('unlimited_tokens')
         center
-            a(href='/tokens/generate')
-                button Generuj
-
+            button.green
+                a(href='/tokens/generate') Generuj
     else if user.permissions.includes('premium') && tokens.length < process.env.MAX_PREMIUM_TOKENS
         center
-            a(href='/tokens/generate')
-                button Generuj
-
+            button.green
+                a(href='/tokens/generate') Generuj
     else if tokens.length < process.env.MAX_TOKENS
         center
-            a(href='/tokens/generate')
-                button Generuj
-
+            button.green
+                a(href='/tokens/generate') Generuj
     else
         center
             | Nie możesz generować więcej tokenów.
@@ -32,15 +30,15 @@ append content
         each token in tokens
             h5(onclick='navigator.clipboard.writeText(\'' + token.token + '\'); alert(\'Twój token został skopiowany do schowka\')' title='Skopiuj!')
                 | TOKEN: #{token.token.slice(0, 20)}...
-                p
-                    | Stworzony: #{token.createdAt}
-                    br
-                    | Modyfikowany: #{token.modifiedAt}
-                a(href='/tokens/regenerate?token=' + token.token)
-                    button Regeneruj
-                a(href='/tokens/delete?token=' + token.token)
-                    button Usuń
+            p
+                | Stworzony: #{fixDate(token.createdAt)}
+                br
+                | Modyfikowany: #{fixDate(token.modifiedAt)}
+
+            button.yellow
+                a(href='/tokens/regenerate?token=' + token.token) Regeneruj
+            button.red
+                a(href='/tokens/delete?token=' + token.token) Usuń
     else
         center
             | Nie posiadasz tokenów? Wygeneruj
-        br

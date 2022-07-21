@@ -21,11 +21,15 @@ export default class LogsUtil {
         else if (type === 'verification')
             webhookUrl = process.env.VERIFICATION_WEBHOOK_URL
 
-        return await axios.post(process.env.WEBHOOK_API_URL as string, {
-            token: process.env.WEBHOOK_API_TOKEN,
-            webhookUrl,
-            webhookData
-        })
+        try {
+            return await axios.post(process.env.WEBHOOK_API_URL as string, {
+                token: process.env.WEBHOOK_API_TOKEN,
+                webhookUrl,
+                webhookData
+            })
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 

@@ -60,14 +60,6 @@
   text-align: center;
   width: 100%;
 }
-#navbar .dropdown .dropdown-element .red {
-  color: #ff0000;
-  font-weight: bolder;
-  transition: 0.5s;
-}
-#navbar .dropdown .dropdown-element .red:hover {
-  color: #ff3333;
-}
 @media (min-width: 859px) {
   #navbar .dropdown .dropdown-elements {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

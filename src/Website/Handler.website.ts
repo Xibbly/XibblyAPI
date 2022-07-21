@@ -51,7 +51,7 @@ export default class HandlerWebsite {
 
                 this.app[route.method](routes.route, async (req: Request, res: Response, next: NextFunction) => {
 
-                        if (route.mustLogged && (!req.session.oauthUser || !req.session.user))
+                        if (route.method === 'get' && route.mustLogged && (!req.session.oauthUser || !req.session.user))
                             return res.redirect('/login')
 
                         const output: RouteOutput = await route.run(req, res, next)

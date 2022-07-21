@@ -1,0 +1,54 @@
+button {
+  border: none;
+  padding: 6px 12px;
+  margin: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  background: #808080;
+  transition: 0.5s;
+}
+button a {
+  color: white;
+}
+
+button:hover {
+  background: #707070;
+}
+
+.red {
+  background: #DC3545;
+}
+
+.red:hover {
+  background: #e05260;
+}
+
+.green {
+  background: #198754;
+}
+
+.green:hover {
+  background: #157347;
+}
+
+.blue {
+  background: #0d6efd;
+}
+
+.blue:hover {
+  background: #0b5ed7;
+}
+
+.yellow {
+  background: #ffff33;
+}
+.yellow a {
+  color: #000;
+}
+
+.yellow:hover {
+  background: #ffff66;
+}
+
+/*# sourceMappingURL=buttons.css.map */
