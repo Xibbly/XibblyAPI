@@ -23,4 +23,10 @@ export default class GlobalChatAddHandler {
 
     }
 
+    public async delete(channelId: string): Promise<void> {
+
+        await models.get('globalchatadds')?.deleteOne({channelId})
+
+    }
+
 }

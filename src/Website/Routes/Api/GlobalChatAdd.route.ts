@@ -3,7 +3,7 @@ import {GlobalChatAddType} from '../../../Types/Api/GlobalChat.type'
 import TokenHandler from '../../../Database/Handlers/Token.handler'
 import GlobalChatAddHandler from '../../../Database/Handlers/GlobalChatAdd.handler'
 import LogsUtil from '../../../Utils/Logs.util'
-import GlobalChatVerifyHandler from "../../../Database/Handlers/GlobalChatVerify.handler";
+import GlobalChatVerifyHandler from '../../../Database/Handlers/GlobalChatVerify.handler'
 
 export default class extends RouteType {
 

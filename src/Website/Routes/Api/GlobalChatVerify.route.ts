@@ -1,6 +1,7 @@
 import RouteType, {RouteOutput} from '../../../Types/Website/Route.type'
-import {GlobalChatVerifyType} from '../../../Types/Api/GlobalChat.type'
+import {GlobalChatVerifyPostType} from '../../../Types/Api/GlobalChat.type'
 import GlobalChatAddHandler from '../../../Database/Handlers/GlobalChatAdd.handler'
+import GlobalChatVerifyHandler from '../../../Database/Handlers/GlobalChatVerify.handler'
 import LogsUtil from '../../../Utils/Logs.util'
 
 export default class extends RouteType {
@@ -15,7 +16,7 @@ export default class extends RouteType {
             method: 'post',
             async run(req): Promise<RouteOutput> {
 
-                const data: Omit<GlobalChatVerifyType, 'verifiedAt'> = req.body
+                const data: GlobalChatVerifyPostType = req.body
 
                 if (!data.token || !data.channelId || !data.moderatorId)
                     return {
@@ -65,13 +66,36 @@ export default class extends RouteType {
 
                     }
 
-                
+                await new GlobalChatVerifyHandler().insert({
+                    token: data.token,
+                    moderatorId: data.moderatorId,
+                    channelId: data.channelId
+                })
+
+                await new GlobalChatAddHandler().delete(data.channelId)
+
+                await new LogsUtil().sendDiscord('verification', {
+                    embeds: [{
+                        title: '🌐 | Czat globalny został zweryfikowany',
+                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
+                        color: '#00ff00'
+                    }]
+                })
+
+                await new LogsUtil().sendDiscord('public', {
+                    embeds: [{
+                        title: '🌐 | Czat globalny został zweryfikowany',
+                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
+                        color: '#00ff00'
+                    }]
+                })
+
 
                 return {
 
                     success: {
 
-                        message: 'Guild is now waiting for verification'
+                        message: 'Guild is now verified'
 
                     }
 

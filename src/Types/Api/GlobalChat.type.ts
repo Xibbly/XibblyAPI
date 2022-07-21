@@ -19,3 +19,11 @@ export interface GlobalChatVerifyType {
     verifiedAt: Date
 
 }
+
+export interface GlobalChatVerifyPostType {
+
+    token: string
+    moderatorId: string
+    channelId: string
+
+}
