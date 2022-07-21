@@ -87,7 +87,7 @@ export default class extends RouteType {
                     embeds: [{
                         title: '🌐 | Czat globalny do weryfikacji',
                         description: `ID kanału: ${data.channelId}\nInvite: ${data.inviteUrl.startsWith('https://') ? data.inviteUrl : `https://${data.inviteUrl}`}`,
-                        color: '#00ff00'
+                        color: '#0000ff'
                     }]
                 })
 

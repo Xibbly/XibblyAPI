@@ -27,3 +27,12 @@ export interface GlobalChatVerifyPostType {
     channelId: string
 
 }
+
+export interface GlobalChatVerifyDiscardType {
+
+    token: string
+    moderatorId: string
+    channelId: string
+    reason: string
+
+}
