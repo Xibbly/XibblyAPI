@@ -17,7 +17,7 @@ export default class extends RouteType {
 
                 const token = req.query.token as string
 
-                if ((await new TokenHandler().getByToken(token)).userId === req.session.user?.userId) {
+                if (token && (await new TokenHandler().getByToken(token)).userId === req.session.user?.userId) {
 
                     await new TokenHandler().delete(token)
 
