@@ -56,6 +56,12 @@ export default class TokenHandler {
 
     }
 
+    public async getFromDbByToken(token: string): Promise<TokenModelType> {
+
+        return await models.get('tokens')?.findOne({token}) as TokenModelType
+
+    }
+
     public async getByUserId(userId: string): Promise<TokenModelType[]> {
 
         const tokens = await models.get('tokens')?.find({userId}) as TokenModelType[]

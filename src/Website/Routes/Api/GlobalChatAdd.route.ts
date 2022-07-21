@@ -1,13 +1,16 @@
 import RouteType, {RouteOutput} from '../../../Types/Website/Route.type'
 import {GlobalChatAddType} from '../../../Types/Api/GlobalChat.type'
 import TokenHandler from '../../../Database/Handlers/Token.handler'
+import GlobalChatAddHandler from '../../../Database/Handlers/GlobalChatAdd.handler'
+import LogsUtil from '../../../Utils/Logs.util'
+import GlobalChatVerifyHandler from "../../../Database/Handlers/GlobalChatVerify.handler";
 
 export default class extends RouteType {
 
     constructor() {
         super()
 
-        this.route = 'api/globalchat/add'
+        this.route = '/api/globalchat/add'
 
         this.methods.push({
 
@@ -40,18 +43,53 @@ export default class extends RouteType {
 
                     }
 
-                if (!await new TokenHandler().getByToken(data.token))
+                if (!await new TokenHandler().getFromDbByToken(data.token))
                     return {
 
                         error: {
 
                             code: 401,
-                            message: 'Invalid token'
+                            message: 'Invaild token'
 
                         }
 
                     }
 
+                if (await new GlobalChatAddHandler().get(data.channelId))
+                    return {
+
+                        error: {
+
+                            code: 400,
+                            message: 'Guild is already waiting for verification'
+
+                        }
+
+                    }
+
+                if (await new GlobalChatVerifyHandler().get(data.channelId))
+                    return {
+
+                        error: {
+
+                            code: 400,
+                            message: 'Guild is already verified'
+
+                        }
+
+                    }
+
+
+                await new GlobalChatAddHandler().insert(data)
+
+                await new LogsUtil().sendDiscord('verification', {
+                    content: data.channelId,
+                    embeds: [{
+                        title: '🌐 | Czat globalny do weryfikacji',
+                        description: `ID kanału: ${data.channelId}\nInvite: ${data.inviteUrl.startsWith('https://') ? data.inviteUrl : `https://${data.inviteUrl}`}`,
+                        color: '#00ff00'
+                    }]
+                })
 
                 return {
 

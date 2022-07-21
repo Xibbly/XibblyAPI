@@ -48,7 +48,6 @@ export default class HandlerWebsite {
         try {
 
             routes.methods.forEach(route => {
-                console.log(route)
                 this.app[route.method](routes.route, async (req: Request, res: Response, next: NextFunction) => {
 
                         if (route.method === 'get' && route.mustLogged && (!req.session.oauthUser || !req.session.user))

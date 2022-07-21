@@ -7,3 +7,15 @@ export interface GlobalChatAddType {
     addedAt: Date
 
 }
+
+export interface GlobalChatVerifyType {
+
+    token: string
+    moderatorId: string
+    channelId: string
+    webhookUrl: string
+    inviteUrl: string
+    addedAt: Date
+    verifiedAt: Date
+
+}
