@@ -13,7 +13,7 @@ export default class HandlerWebsite {
 
             if (category.endsWith('.js')) {
 
-                let route: Route = new (require(`${__dirname}/Routes/${category}`).default)
+                const route: Route = new (require(`${__dirname}/Routes/${category}`).default)
                 if (this.setupRoute(route))
                     table.push({
                         route: route.route,
