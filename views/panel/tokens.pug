@@ -8,37 +8,40 @@ append title
 
 
 append content
-    if user.permissions.includes('*') || user.permissions.includes('unlimited_tokens')
-        center
-            button.green
-                a(href='/tokens/generate') Generuj
-    else if user.permissions.includes('premium') && tokens.length < process.env.MAX_PREMIUM_TOKENS
-        center
-            button.green
-                a(href='/tokens/generate') Generuj
-    else if tokens.length < process.env.MAX_TOKENS
-        center
-            button.green
-                a(href='/tokens/generate') Generuj
-    else
-        center
-            | Nie możesz generować więcej tokenów.
+    #panel
+        if user.permissions.includes('*') || user.permissions.includes('unlimited_tokens')
+            center
+                button.green
+                    a(href='/token/generate') Generuj
+        else if user.permissions.includes('premium') && tokens.length < process.env.MAX_PREMIUM_TOKENS
+            center
+                button.green
+                    a(href='/token/generate') Generuj
+        else if tokens.length < process.env.MAX_TOKENS
+            center
+                button.green
+                    a(href='/token/generate') Generuj
+        else
+            center
+                | Nie możesz generować więcej tokenów.
 
-    br
+        br
 
-    if tokens.length != 0
-        each token in tokens
-            h5(onclick='navigator.clipboard.writeText(\'' + token.token + '\'); alert(\'Twój token został skopiowany do schowka\')' title='Skopiuj!')
-                | TOKEN: #{token.token.slice(0, 20)}...
-            p
-                | Stworzony: #{fixDate(token.createdAt)}
-                br
-                | Modyfikowany: #{fixDate(token.modifiedAt)}
+        if tokens.length != 0
+            .cards
+                each token in tokens
+                    .card
+                        h5(onclick='navigator.clipboard.writeText(\'' + token.token + '\'); alert(\'Twój token został skopiowany do schowka\')' title='Skopiuj!')
+                            | TOKEN: #{token.token.slice(0, 20)}...
+                        p
+                            | Stworzony: #{fixDate(token.createdAt)}
+                            br
+                            | Modyfikowany: #{fixDate(token.modifiedAt)}
 
-            button.yellow
-                a(href='/tokens/regenerate?token=' + token.token) Regeneruj
-            button.red
-                a(href='/tokens/delete?token=' + token.token) Usuń
-    else
-        center
-            | Nie posiadasz tokenów? Wygeneruj
+                        button.yellow
+                            a(href='/token/regenerate?token=' + token.token) Regeneruj
+                        button.red
+                            a(href='/token/delete?token=' + token.token) Usuń
+        else
+            center
+                | Nie posiadasz tokenów? Wygeneruj

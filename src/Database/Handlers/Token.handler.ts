@@ -76,4 +76,24 @@ export default class TokenHandler {
 
     }
 
+    public async delete(token: string): Promise<void> {
+
+        await models.get('tokens')?.deleteOne({token})
+
+    }
+
+    public async regenerate(token: string): Promise<void> {
+
+        const decrypted = await this.decrypt(token)
+
+        await models.get('tokens')?.updateOne({token}, {
+            token: await this.generate({
+                userId: decrypted.userId,
+                createdAt: decrypted.createdAt,
+                modifiedAt: new Date()
+            })
+        })
+
+    }
+
 }
