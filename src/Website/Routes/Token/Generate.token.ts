@@ -28,8 +28,7 @@ export default class extends RouteType {
                         redirect: '/panel/tokens'
 
                     }
-                }
-                else if (userTokens.length >= maxTokensForUser) {
+                } else if (userTokens.length >= maxTokensForUser) {
                     return {
 
                         redirect: '/panel/tokens'
