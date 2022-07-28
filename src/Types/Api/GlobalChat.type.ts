@@ -28,6 +28,27 @@ export interface GlobalChatVerifyPostType {
 
 }
 
+export interface GlobalChatMutePostType {
+
+    token: string
+    userId: string
+    moderatorId: string
+    reason: string
+    time?: string
+    permament?: boolean
+
+}
+
+export interface GlobalChatMuteType {
+
+    userId: string
+    moderatorId: string
+    reason: string
+    expiriedAt?: number
+    permament?: boolean
+
+}
+
 export interface GlobalChatDeltePostType {
 
     token: string

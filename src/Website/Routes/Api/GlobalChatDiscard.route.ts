@@ -54,7 +54,7 @@ export default class extends RouteType {
                 await new LogsUtil().sendDiscord('verification', {
                     embeds: [{
                         title: '🌐 | Czat globalny został odrzucony',
-                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\``,
+                        description: `ID kanału: \`${data.channelId}\`\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\``,
                         color: '#ff0000'
                     }]
                 })
@@ -62,7 +62,7 @@ export default class extends RouteType {
                 await new LogsUtil().sendDiscord('public', {
                     embeds: [{
                         title: '🌐 | Czat globalny został odrzucony',
-                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\``,
+                        description: `ID kanału: \`${data.channelId}\`\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\``,
                         color: '#ff0000'
                     }]
                 })

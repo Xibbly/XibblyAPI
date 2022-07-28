@@ -1,5 +1,5 @@
 import models from '../Index.database'
-import {GlobalChatUserType} from '../../Types/Api/GlobalChat.type'
+import {GlobalChatMuteType, GlobalChatUserType} from '../../Types/Api/GlobalChat.type'
 
 export default class GlobalChatUserHandler {
 
@@ -34,7 +34,19 @@ export default class GlobalChatUserHandler {
     }
 
     public async insert(userId: string, customId: string): Promise<void> {
+
         await models.get('globalchatusers')?.create({userId, customId})
+
+    }
+
+    public async getMute(userId: string): Promise<GlobalChatMuteType> {
+
+        return await models.get('globalchatmutes')?.findOne({userId}) as GlobalChatMuteType
+
+    }
+
+    public async insertMute(data: GlobalChatMuteType) {
+        await models.get('globalchatmutes')?.create(data)
     }
 
 }

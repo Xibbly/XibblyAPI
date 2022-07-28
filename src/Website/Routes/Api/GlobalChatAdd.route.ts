@@ -66,7 +66,7 @@ export default class extends RouteType {
                     content: data.channelId,
                     embeds: [{
                         title: '🌐 | Czat globalny do weryfikacji',
-                        description: `ID kanału: ${data.channelId}\nInvite: ${data.inviteUrl.startsWith('https://') ? data.inviteUrl : `https://${data.inviteUrl}`}`,
+                        description: `ID kanału: \`${data.channelId}\`\nInvite: ${data.inviteUrl.startsWith('https://') ? data.inviteUrl : `https://${data.inviteUrl}`}`,
                         color: '#0000ff'
                     }]
                 })

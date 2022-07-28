@@ -50,7 +50,7 @@ export default class extends RouteType {
                 await new LogsUtil().sendDiscord('public', {
                     embeds: [{
                         title: '🌐 | Czat globalny został usunięty',
-                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\``,
+                        description: `ID kanału: \`${data.channelId}\`\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\``,
                         color: '#ff0000'
                     }]
                 })

@@ -61,7 +61,7 @@ export default class extends RouteType {
                 await new LogsUtil().sendDiscord('verification', {
                     embeds: [{
                         title: '🌐 | Czat globalny został zweryfikowany',
-                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
+                        description: `ID kanału: \`${data.channelId}\`\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
                         color: '#00ff00'
                     }]
                 })
@@ -69,7 +69,7 @@ export default class extends RouteType {
                 await new LogsUtil().sendDiscord('public', {
                     embeds: [{
                         title: '🌐 | Czat globalny został zweryfikowany',
-                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
+                        description: `ID kanału: \`${data.channelId}\`\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
                         color: '#00ff00'
                     }]
                 })
