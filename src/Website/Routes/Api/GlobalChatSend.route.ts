@@ -3,7 +3,7 @@ import {GlobalChatSendType} from '../../../Types/Api/GlobalChat.type'
 import TokenHandler from '../../../Database/Handlers/Token.handler'
 import GlobalChatVerifyHandler from '../../../Database/Handlers/GlobalChatVerify.handler'
 import GlobalChatUserHandler from '../../../Database/Handlers/GlobalChatUser.handler'
-import WebhookUtil from "../../../Utils/Webhook.util";
+import WebhookUtil from '../../../Utils/Webhook.util'
 
 export default class extends RouteType {
 
@@ -48,6 +48,14 @@ export default class extends RouteType {
                         error: {
                             code: 400,
                             message: 'Guild is not werified',
+                        }
+                    }
+
+                if (await new GlobalChatUserHandler().getMute(data.userId))
+                    return {
+                        error: {
+                            code: 400,
+                            message: 'User is muted'
                         }
                     }
 

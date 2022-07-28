@@ -2,7 +2,7 @@ import RouteType, {RouteOutput} from '../../../Types/Website/Route.type'
 import {GlobalChatMutePostType} from '../../../Types/Api/GlobalChat.type'
 import LogsUtil from '../../../Utils/Logs.util'
 import GlobalChatUserHandler from '../../../Database/Handlers/GlobalChatUser.handler'
-import DateUtil from "../../../Utils/Date.util";
+import DateUtil from '../../../Utils/Date.util'
 
 export default class extends RouteType {
 
@@ -59,7 +59,7 @@ export default class extends RouteType {
                         }
                     }
 
-                let expiriedAt = -1;
+                let expiriedAt = -1
                 if (data.time) {
                     expiriedAt = new DateUtil().add(data.time as string)
                     if (expiriedAt == -1)
@@ -88,7 +88,7 @@ export default class extends RouteType {
 
                 await new LogsUtil().sendDiscord('public', {
                     embeds: [{
-                        title: '👮‍♂️ | Czat globalny',
+                        title: '👮‍♂️ | Czat globalny | Wyciszenie',
                         description: `ID użytkownika: \`${data.userId}\`(\`${userData.customId}\`)\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)\nPowód: \`${data.reason}\`\nCzas: \`${expiriedAt != -1 ? `${data.time}` : 'Nieokreślony'}\``,
                         color: '#ff0000'
                     }]

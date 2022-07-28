@@ -39,6 +39,14 @@ export interface GlobalChatMutePostType {
 
 }
 
+export interface GlobalChatUnmuteType {
+
+    token: string
+    userId: string
+    moderatorId: string
+
+}
+
 export interface GlobalChatMuteType {
 
     userId: string

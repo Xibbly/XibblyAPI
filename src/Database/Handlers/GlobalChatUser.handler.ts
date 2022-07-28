@@ -45,8 +45,16 @@ export default class GlobalChatUserHandler {
 
     }
 
-    public async insertMute(data: GlobalChatMuteType) {
+    public async insertMute(data: GlobalChatMuteType): Promise<void> {
+
         await models.get('globalchatmutes')?.create(data)
+
+    }
+
+    public async unmute(userId: string): Promise<void> {
+
+        await models.get('globalchatmutes')?.deleteOne({userId})
+
     }
 
 }
