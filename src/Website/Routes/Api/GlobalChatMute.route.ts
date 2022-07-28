@@ -58,17 +58,9 @@ export default class extends RouteType {
 
                 await new GlobalChatAddHandler().delete(data.channelId)
 
-                await new LogsUtil().sendDiscord('verification', {
-                    embeds: [{
-                        title: '🌐 | Czat globalny został zweryfikowany',
-                        description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
-                        color: '#00ff00'
-                    }]
-                })
-
                 await new LogsUtil().sendDiscord('public', {
                     embeds: [{
-                        title: '🌐 | Czat globalny został zweryfikowany',
+                        title: '👮‍♂️ | Czat globalny został zweryfikowany',
                         description: `ID kanału: ${data.channelId}\nModerator: <@${data.moderatorId}>(\`${data.moderatorId}\`)`,
                         color: '#00ff00'
                     }]
@@ -76,7 +68,7 @@ export default class extends RouteType {
 
                 return {
                     success: {
-                        message: 'Guild is now verified'
+                        message: 'User is now muted'
                     }
 
                 }
