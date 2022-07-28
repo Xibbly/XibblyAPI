@@ -19,47 +19,28 @@ export default class extends RouteType {
 
                 if (!data.token || !data.channelId || !data.moderatorId || !data.reason)
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Missing parameters'
-
                         }
-
                     }
 
                 if (!Number(data.channelId) || data.channelId.length != 18 || !Number(data.moderatorId) || data.moderatorId.length != 18 || data.reason.length === 0)
-                    return {
-
-                        error: {
-
-                            code: 400,
-                            message: 'Invalid data provided'
-
-                        }
-
-                    }
+                    return {}
 
                 if (process.env.GLOBALCHAT_TOKEN != data.token)
                     return {
-
                         error: {
-
                             code: 401,
                             message: 'Invaild token'
-
                         }
-
                     }
 
                 if (!await new GlobalChatVerifyHandler().get(data.channelId))
                     return {
                         error: {
-
                             code: 404,
                             message: 'Channel not found'
-
                         }
                     }
 
@@ -76,13 +57,9 @@ export default class extends RouteType {
 
 
                 return {
-
                     success: {
-
                         message: 'Guild is deleted'
-
                     }
-
                 }
 
             }

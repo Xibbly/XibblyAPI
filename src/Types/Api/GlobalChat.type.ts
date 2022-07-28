@@ -45,3 +45,23 @@ export interface GlobalChatVerifyDiscardType {
     reason: string
 
 }
+
+export interface GlobalChatUserType {
+
+    userId: string
+    customId: string
+    moderator: boolean
+
+}
+
+export interface GlobalChatSendType {
+
+    token: string
+    channelId: string
+    userId: string
+    userTag: string
+    avatar_url: string
+    content?: string
+    files?: string[]
+
+}

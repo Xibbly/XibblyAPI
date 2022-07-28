@@ -20,50 +20,34 @@ export default class extends RouteType {
 
                 if (!data.token || !data.channelId || !data.moderatorId)
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Missing parameters'
-
                         }
-
                     }
 
                 if (!Number(data.channelId) || data.channelId.length != 18 || !Number(data.moderatorId) || data.moderatorId.length != 18)
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Invalid data provided'
-
                         }
-
                     }
 
                 if (process.env.GLOBALCHAT_TOKEN != data.token)
                     return {
-
                         error: {
-
                             code: 401,
                             message: 'Invaild token'
-
                         }
-
                     }
 
                 if (!await new GlobalChatAddHandler().get(data.channelId))
                     return {
-
                         error: {
-
                             code: 404,
                             message: 'Guild is not waiting for verification'
-
                         }
-
                     }
 
                 await new GlobalChatVerifyHandler().insert({
@@ -92,11 +76,8 @@ export default class extends RouteType {
 
 
                 return {
-
                     success: {
-
                         message: 'Guild is now verified'
-
                     }
 
                 }

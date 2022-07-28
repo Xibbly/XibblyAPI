@@ -11,12 +11,12 @@ export default class UserHandler {
 
     public async insert(userId: string, ip: string): Promise<UserType> {
 
-        return (await models.get('users')?.create({
+        return await models.get('users')?.create({
 
             userId,
             ip
 
-        })) as UserType
+        }) as UserType
 
     }
 

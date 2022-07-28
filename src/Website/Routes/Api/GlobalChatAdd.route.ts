@@ -21,62 +21,42 @@ export default class extends RouteType {
 
                 if (!data.token || !data.webhookUrl || !data.channelId || !data.inviteUrl)
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Missing parameters'
-
                         }
-
                     }
 
                 if (!data.webhookUrl.startsWith('https://discord.com/api/webhooks/') || !Number(data.channelId) || data.channelId.length != 18 || !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')))
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Invalid data provided'
-
                         }
-
                     }
 
                 if (!await new TokenHandler().getFromDbByToken(data.token))
                     return {
-
                         error: {
-
                             code: 401,
                             message: 'Invaild token'
-
                         }
-
                     }
 
                 if (await new GlobalChatAddHandler().get(data.channelId))
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Guild is already waiting for verification'
-
                         }
-
                     }
 
                 if (await new GlobalChatVerifyHandler().get(data.channelId))
                     return {
-
                         error: {
-
                             code: 400,
                             message: 'Guild is already verified'
-
                         }
-
                     }
 
 
@@ -92,13 +72,9 @@ export default class extends RouteType {
                 })
 
                 return {
-
                     success: {
-
                         message: 'Guild is now waiting for verification'
-
                     }
-
                 }
 
             }
