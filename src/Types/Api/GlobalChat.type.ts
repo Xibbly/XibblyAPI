@@ -28,6 +28,15 @@ export interface GlobalChatVerifyPostType {
 
 }
 
+export interface GlobalChatDeltePostType {
+
+    token: string
+    moderatorId: string
+    reason: string
+    channelId: string
+
+}
+
 export interface GlobalChatVerifyDiscardType {
 
     token: string

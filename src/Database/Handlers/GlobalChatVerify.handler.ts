@@ -28,4 +28,10 @@ export default class GlobalChatVerifyHandler {
 
     }
 
+    public async delete(channelId: string): Promise<void> {
+
+        await models.get('globalchatsverifies')?.deleteOne({channelId})
+
+    }
+
 }
