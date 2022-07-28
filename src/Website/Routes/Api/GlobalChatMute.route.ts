@@ -59,6 +59,14 @@ export default class extends RouteType {
                         }
                     }
 
+                if ((process.env.DEV_IDS as string).split(',').includes(data.userId) || userData.moderator)
+                    return {
+                        error: {
+                            code: 400,
+                            message: 'You cannot mute this user'
+                        }
+                    }
+
                 let expiriedAt = -1
                 if (data.time) {
                     expiriedAt = new DateUtil().add(data.time as string)
