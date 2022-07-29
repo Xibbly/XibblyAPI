@@ -6,6 +6,11 @@ import {CacheUtil} from './Utils/Cache.util'
 
 dotenvConfig()
 
+let settings = {
+    globalchat: true
+}
+export default settings
+
 export class Index {
 
     constructor() {

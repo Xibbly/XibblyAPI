@@ -4,6 +4,7 @@ import TokenHandler from '../../../Database/Handlers/Token.handler'
 import GlobalChatAddHandler from '../../../Database/Handlers/GlobalChatAdd.handler'
 import LogsUtil from '../../../Utils/Logs.util'
 import GlobalChatVerifyHandler from '../../../Database/Handlers/GlobalChatVerify.handler'
+import WebhookUtil from "../../../Utils/Webhook.util";
 
 export default class extends RouteType {
 
@@ -17,9 +18,9 @@ export default class extends RouteType {
             method: 'post',
             async run(req): Promise<RouteOutput> {
 
-                const data: Omit<GlobalChatAddType, 'addDate'> = req.body
+                const data: Omit<GlobalChatAddType, 'addDate' | 'channelId'> = req.body
 
-                if (!data.token || !data.webhookUrl || !data.channelId || !data.inviteUrl)
+                if (!data.token || !data.webhookUrl || !data.inviteUrl)
                     return {
                         error: {
                             code: 400,
@@ -27,7 +28,7 @@ export default class extends RouteType {
                         }
                     }
 
-                if (!data.webhookUrl.startsWith('https://discord.com/api/webhooks/') || !Number(data.channelId) || data.channelId.length != 18 || !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')))
+                if (!data.webhookUrl.startsWith('https://discord.com/api/webhooks/')|| !(data.inviteUrl.startsWith('https://discord.gg/') || data.inviteUrl.startsWith('discord.gg/')))
                     return {
                         error: {
                             code: 400,
@@ -43,7 +44,17 @@ export default class extends RouteType {
                         }
                     }
 
-                if (await new GlobalChatAddHandler().get(data.channelId))
+                if (!await new WebhookUtil().check(data.webhookUrl))
+                    return {
+                        error: {
+                            code: 400,
+                            message: 'Invalid webhook url'
+                        }
+                    }
+
+                const channelId = (await new WebhookUtil().get(data.webhookUrl)).channel_id
+
+                if (await new GlobalChatAddHandler().get(channelId))
                     return {
                         error: {
                             code: 400,
@@ -51,7 +62,7 @@ export default class extends RouteType {
                         }
                     }
 
-                if (await new GlobalChatVerifyHandler().get(data.channelId))
+                if (await new GlobalChatVerifyHandler().get(channelId))
                     return {
                         error: {
                             code: 400,
@@ -60,13 +71,16 @@ export default class extends RouteType {
                     }
 
 
-                await new GlobalChatAddHandler().insert(data)
+                await new GlobalChatAddHandler().insert({
+                    ...data,
+                    channelId
+                })
 
                 await new LogsUtil().sendDiscord('verification', {
-                    content: data.channelId,
+                    content: channelId,
                     embeds: [{
                         title: '🌐 | Czat globalny do weryfikacji',
-                        description: `ID kanału: \`${data.channelId}\`\nInvite: ${data.inviteUrl.startsWith('https://') ? data.inviteUrl : `https://${data.inviteUrl}`}`,
+                        description: `ID kanału: \`${channelId}\`\nInvite: ${data.inviteUrl.startsWith('https://') ? data.inviteUrl : `https://${data.inviteUrl}`}`,
                         color: '#0000ff'
                     }]
                 })

@@ -57,4 +57,10 @@ export default class GlobalChatUserHandler {
 
     }
 
+    public async getMutes(): Promise<GlobalChatMuteType[]> {
+
+        return await models.get('globalchatmutes')?.find() as GlobalChatMuteType[]
+
+    }
+
 }

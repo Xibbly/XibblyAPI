@@ -6,7 +6,7 @@ export default PermissionsCache
 
 export class CacheUtil {
 
-    public async setup() {
+    public async setup(): Promise<void> {
 
         const users = await new UserHandler().getAll()
         for (const user of users) {

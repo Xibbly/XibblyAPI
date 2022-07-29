@@ -25,7 +25,8 @@ export default class HandlerWebsite {
 
             } else {
 
-                readdirSync(`${__dirname}/Routes/${category}`).filter(fileName => !fileName.startsWith('--')).forEach((file: string) => {
+                readdirSync(`${__dirname}/Routes/${category}`).filter(fileName => !fileName.startsWith('--') && fileName.endsWith('.js')).forEach((file: string) => {
+
 
                     const route: Route = new (require(`${__dirname}/Routes/${category}/${file}`).default)
                     if (this.setupRoute(route))

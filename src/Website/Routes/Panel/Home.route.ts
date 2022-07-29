@@ -5,7 +5,7 @@ export default class extends RouteType {
     constructor() {
         super()
 
-        this.route = '/panel/'
+        this.route = '/panel'
 
         this.methods.push({
 

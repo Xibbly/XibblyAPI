@@ -2,6 +2,20 @@ import axios from 'axios'
 
 export default class WebhookUtil {
 
+    public async get(webhookUrl: string): Promise<any> {
+
+        try {
+            const res = await axios.post(`${process.env.WEBHOOK_API_URL}check`, {
+                token: process.env.WEBHOOK_API_TOKEN,
+                webhookUrl
+            })
+            return res.data
+        } catch (e) {
+            return false
+        }
+
+    }
+
     public async check(webhookUrl: string): Promise<boolean> {
 
         try {

@@ -4,6 +4,7 @@ import TokenHandler from '../../../Database/Handlers/Token.handler'
 import GlobalChatVerifyHandler from '../../../Database/Handlers/GlobalChatVerify.handler'
 import GlobalChatUserHandler from '../../../Database/Handlers/GlobalChatUser.handler'
 import WebhookUtil from '../../../Utils/Webhook.util'
+import settings from "../../../Index";
 
 export default class extends RouteType {
 
@@ -16,7 +17,6 @@ export default class extends RouteType {
 
             method: 'post',
             async run(req): Promise<RouteOutput> {
-
                 const data: GlobalChatSendType = req.body
 
                 if (!data.token || !data.userId || !data.channelId || !data.avatar_url || !data.userTag || (!data.content && !data.files))
@@ -59,6 +59,14 @@ export default class extends RouteType {
                         }
                     }
 
+                // if (!settings.globalchat)
+                //     return {
+                //         error: {
+                //             code: 400,
+                //             message: 'Global chat is not enabled'
+                //         }
+                //     }
+
                 const user: string = await new GlobalChatUserHandler().generateUsername(data.userTag, data.userId)
                 const allWebhooks: string[] = await new GlobalChatVerifyHandler().getAllWebhook()
                 let sendedTo = 0
@@ -88,7 +96,6 @@ export default class extends RouteType {
                         sendedTo
                     }
                 }
-
             }
 
         })
