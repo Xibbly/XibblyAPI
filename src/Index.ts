@@ -2,6 +2,7 @@ import {config as dotenvConfig} from 'dotenv'
 import IndexWebsite from './Website/Index.website'
 import {IndexDatabase} from './Database/Index.database'
 import IntervalsUtil from './Utils/Intervals.util'
+import {CacheUtil} from './Utils/Cache.util'
 
 dotenvConfig()
 
@@ -9,7 +10,7 @@ export class Index {
 
     constructor() {
 
-    this.setup()
+        this.setup()
 
     }
 
@@ -17,6 +18,7 @@ export class Index {
 
         new IndexDatabase()
         new IndexWebsite()
+        await new CacheUtil().setup()
         await new IntervalsUtil()
 
     }

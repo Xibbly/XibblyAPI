@@ -2,6 +2,8 @@ import {readdirSync} from 'fs'
 import {Application, NextFunction, Request, Response} from 'express'
 import Route, {RouteOutput} from '../Types/Website/Route.type'
 import LogsUtil from '../Utils/Logs.util'
+import PermissionsCache from '../Utils/Cache.util'
+import {Permissions} from '../Types/Database/User.type'
 
 export default class HandlerWebsite {
 
@@ -52,6 +54,10 @@ export default class HandlerWebsite {
 
                         if (route.method === 'get' && route.mustLogged && (!req.session.oauthUser || !req.session.user))
                             return res.redirect('/login')
+
+                        if (route.mustLogged)
+                            // @ts-ignore
+                            req.session.user?.permissions = PermissionsCache.get(req.session.user?.userId as string) as Permissions[]
 
                         const output: RouteOutput = await route.run(req, res, next)
 
